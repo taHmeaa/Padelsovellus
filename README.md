@@ -2,7 +2,7 @@ Padelsovellus
 
 Laaditaan sovellus jolla voimme pitää yllä koko kauden kattavaa tilastointia peleistä ja luoda pelipäiville kaaviot mihin ilmoittautuneet pelaajat sijoitetaan sattumanvaraisesti.
 
--Ilmoittautuminen peleihin kirjautumalla. Tehdään alkuun yksi käyttäjä ja pelaajat valitaan "checkboxilla"
+-Ilmoittautuminen peleihin kirjautumalla. Tehdään alkuun yksi käyttäjä ja pelaajat valitaan "checkboxilla". Herokua varten kirjautuminen auki kaikille...
 
 -Arvotaan peliparit pelipäivänä (random generaattori) ja sijoitetaan pelaajat kaavioon. Kaaviot 4-6 pelaajalle alkuun ja lisätään sitten kaaviot 7-9 pelaajalle, jos aikaa jää.
 
@@ -19,7 +19,7 @@ Mahdollisia lisäominaisuuksia:
 ****************************************************************************************
 Ohjelman tila:
 
--Kirjautuminen onnistuu ja salasanat tallennetaan kryptattuna. Kirjautuminen (user: testi pass: testi).
+-Kirjautuminen onnistuu ja salasanat tallennetaan kryptattuna.
 
 -Pelaajavalinta onnistuu ja joukkueet arvotaan.
 
@@ -32,3 +32,6 @@ Ohjelman tila:
 -Kausitilaston tiedon purku järkevään muotoon kesken.
 
 ****************************************************************************************
+Tuolta löytyy äppi:
+
+https://paistilanpadel.herokuapp.com/
