@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<title>Paistilan Padel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/style.css">
+
+<body>
+    <div class="header">
+        <h1>Paistilan Padel</h1>
+    </div>
+
+{% if session.user_id %}
+
+<div><h2>Valitse päivän pelaajat (vähintään 4)</h2></div>
+
+<form action="/games" method="POST">
+    <div class="playerboard">
+        <div>Pelaaja 1<input type="checkbox" name="player" value="Pelaaja 1"></div>
+        <div>Pelaaja 2<input type="checkbox" name="player" value="Pelaaja 2"></div> 
+        <div>Pelaaja 3<input type="checkbox" name="player" value="Pelaaja 3"></div> 
+        <div>Pelaaja 4<input type="checkbox" name="player" value="Pelaaja 4"></div> 
+        <div>Pelaaja 5<input type="checkbox" name="player" value="Pelaaja 5"></div> 
+        <div>Pelaaja 6<input type="checkbox" name="player" value="Pelaaja 6"></div> 
+    </div>
+    <div class="scorebutton">
+        <input type="submit" value="Aloita pelit">
+    </div>     
+</form>
+<div><h2>Tähän tulee kausitilastot näkyviin (kesken)</h2></div>
+<br>
+
+<div class="scoreboard">{{ podium }}</div>
+<nav>
+    <ul>
+        <li>
+            <a href="/logout">Kirjaudu ulos</a>
+        </li>
+    </ul>
+</nav>
+{% else %}
+<div class="login">
+    <form action="/login" method="post">
+        <label for="username">Tunnus:</label>
+        <input type="text" name="username">
+        <label for="password">Salasana:</label>
+        <input type="password" name="password">
+        <input id=button type="submit" value="Kirjaudu">
+    </form>
+</div>
+
+{% endif %}
+
+<body>

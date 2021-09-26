@@ -1,0 +1,110 @@
+
+body {
+    margin: auto;
+    max-width: 45em;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    background: rgb(173, 165, 165);
+}
+
+
+.header {
+    background: rgb(142, 214, 127);
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding: 1em 1em;
+    font-size: 2em;
+    border-radius: .5em;
+    margin-top: .5em;
+}
+
+h2 {
+    text-align: center;
+    margin: 1em;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.login {
+    margin: 0 auto;
+    padding: .5em;
+    background: blanchedalmond;
+    border-radius: .5em;
+    max-width: 15em;
+    display  : grid;
+    grid-template-columns: 5em 10em;
+    grid-row-gap: .3em;
+    margin-bottom: 2em;
+    margin-top: .5em;
+}
+
+.scoreboard {
+    background: rgb(255, 96, 96, 0.562);
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: .5em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-family: 'Quicksand', sans-serif;
+    
+}
+
+.score {
+    padding: 1em;
+    text-align: center;
+}
+
+.team {
+    font-weight: bold;
+    text-align: center;
+}
+
+.scorebutton{
+    margin: auto 0;
+    align-content: center;
+    text-align: center;
+}
+.playerboard{
+    background: rgb(255, 96, 96, 0.562);
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: .5em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+}
+
+
+form label, input{
+    margin: .5em;
+    align-content: center;
+    
+}
+
+form #button {
+    grid-column-start: 2;
+    padding:5px;
+    border-radius:.5em;
+    border: none;
+    text-align: center;
+    width: 5em;
+    background: tan;
+}
+
+form #button:hover{
+    background: rgb(138, 119, 94);
+    color: white;
+}
+
+nav ul {
+    padding: 0;
+    margin: .5em;
+    text-align: center;
+}
+
+.content {
+    background: white;
+    padding: 1.5em 2em;
+    border-radius: .5em
+ }

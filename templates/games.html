@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<title>Paistilan Padel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/style.css">
+
+<body>
+    <div class="header">
+        <h1>Paistilan Padel</h1>
+    </div>
+
+    <form action="/stats" method="POST">
+        
+        <div class="scoreboard">  
+            <div class="team">{{ P1 }} / {{ P2 }}</div>
+            <div class="team">{{ P3 }} / {{ P4 }}</div>     
+            <div class="score">
+                <select name="T1">
+                    <option value="0" selected> 0
+                    <option value="1"> 1
+                    <option value="2"> 2
+                    <option value="3"> 3
+                    <option value="4"> 4
+                    <option value="5"> 5
+                    <option value="6"> 6
+                    <option value="7"> 7
+                </select>
+            </div>
+            <div class="score">
+                <select name="T2">
+                    <option value="0" selected> 0
+                    <option value="1"> 1
+                    <option value="2"> 2
+                    <option value="3"> 3
+                    <option value="4"> 4
+                    <option value="5"> 5
+                    <option value="6"> 6
+                    <option value="7"> 7
+                </select>
+            </div>
+        </div>
+        <div class="scorebutton">
+            <input type="submit" value="Tallenna tulokset">
+        </div>    
+    </form>
+    
+
+<nav>
+    <ul>
+        <li>
+            <a href="/">Lopeta ja ilman tallennusta</a>
+        </li>
+    </ul>
+</nav>
