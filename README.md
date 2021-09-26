@@ -16,5 +16,3 @@ Mahdollisia lisäominaisuuksia:
 
 -Kausitilastoon tiedot kenen kanssa voittanut eniten ja kenen kanssa vähiten. Kuka on ollut pahin vastustaja ja kuka helpoin.
 
--testi lisäys
-
