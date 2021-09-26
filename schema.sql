@@ -12,7 +12,7 @@ CREATE TABLE players (
 
 CREATE TABLE stats (
     id SERIAL PRIMARY KEY,
-    player TEXT UNIQUE,
+    player TEXT,
     score INTEGER,
     game_at TIMESTAMP  
 );
