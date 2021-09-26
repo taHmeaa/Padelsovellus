@@ -18,12 +18,17 @@ Mahdollisia lisäominaisuuksia:
 
 ****************************************************************************************
 Ohjelman tila:
--Kirjautuminen onnistuu ja salasanat tallennetaan kryptattuna.
--Pelaajavalinta onnistuu ja joukkueet arvotaan.
--Vasta yksi peli järjestelmässä ja lopu tlisätään, kun saadaan tilastointi toimimaan.
--Tilastointi toimii , mutta vain itsemääritetyllä pelaajan nimellä. Ei vielä löydetty ratkaisua, kuinka arvonan jälkeen saisi html-kaavalla yksilöityä tuloksen.
--Ulkoasu erittäin kesken.
--Kausi tilasto puuttuu vielä etusivulta kokonaan.
 
+-Kirjautuminen onnistuu ja salasanat tallennetaan kryptattuna. Kirjautuminen (user: testi pass: testi).
+
+-Pelaajavalinta onnistuu ja joukkueet arvotaan.
+
+-Vasta yksi pelikierros järjestelmässä ja loput lisätään, kun saadaan tilastointi toimimaan.
+
+-Tilastointi toimii, mutta vain itsemääritetyllä pelaajan nimellä. Ei vielä löydetty ratkaisua, kuinka arvonan jälkeen saisi html-kaavalla yksilöityä tuloksen.
+
+-Ulkoasu erittäin kesken.
+
+-Kausitilaston tiedon purku järkevään muotoon kesken.
 
 ****************************************************************************************
