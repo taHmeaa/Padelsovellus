@@ -10,21 +10,40 @@
 
 {% if session.user_id %}
 
-<div><h2>Valitse päivän pelaajat (vähintään 4)</h2></div>
+<div><h2>Valitse päivän pelaajat (vähintään 5)</h2></div>
 
-<form action="/games" method="POST">
+<form action="/games" method="POST" onsubmit="return check()">
     <div class="playerboard">
-        <div>Pelaaja 1<input type="checkbox" name="player" value="Pelaaja 1"></div>
-        <div>Pelaaja 2<input type="checkbox" name="player" value="Pelaaja 2"></div> 
-        <div>Pelaaja 3<input type="checkbox" name="player" value="Pelaaja 3"></div> 
-        <div>Pelaaja 4<input type="checkbox" name="player" value="Pelaaja 4"></div> 
-        <div>Pelaaja 5<input type="checkbox" name="player" value="Pelaaja 5"></div> 
-        <div>Pelaaja 6<input type="checkbox" name="player" value="Pelaaja 6"></div> 
+        <div class="playerbox">Pelaaja 1<input type="checkbox" name="player" value="Pelaaja1"></div>
+        <div class="playerbox">Pelaaja 2<input type="checkbox" name="player" value="Pelaaja2"></div> 
+        <div class="playerbox">Pelaaja 3<input type="checkbox" name="player" value="Pelaaja3"></div> 
+        <div class="playerbox">Pelaaja 4<input type="checkbox" name="player" value="Pelaaja4"></div> 
+        <div class="playerbox">Pelaaja 5<input type="checkbox" name="player" value="Pelaaja5"></div> 
+        <div class="playerbox">Pelaaja 6<input type="checkbox" name="player" value="Pelaaja6"></div> 
     </div>
     <div class="scorebutton">
-        <input type="submit" value="Aloita pelit">
+        <input id= "gamestart" type="submit" value="Aloita pelit" >
     </div>     
 </form>
+<script>
+    function check() {
+        var checked = 0;
+        var player = form.getElementById("player");
+        var chks = player.getElementsByTagName("input");
+        for (var i = 0; i < chks.length; i++) {
+            if (chks[i].checked) {
+                checked++;
+            }
+        }
+        if (checked > 3) {
+            return true;
+        }   
+        else {
+            alert("Valitse vähintään 5 pelaajaa");
+            return false;
+        }
+    }
+</script>
 <div><h2>Tähän tulee kausitilastot näkyviin (kesken)</h2></div>
 <br>
 

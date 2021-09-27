@@ -7,14 +7,18 @@
     <div class="header">
         <h1>Paistilan Padel</h1>
     </div>
-
+    <div class="dayscores">
+        <div>Pelaaja</div>
+        <div>Tulos</div>
+    </div>
     <form action="/stats" method="POST">
-        
         <div class="scoreboard">  
             <div class="team">{{ P1 }} / {{ P2 }}</div>
             <div class="team">{{ P3 }} / {{ P4 }}</div>     
             <div class="score">
-                <select name="T1">
+                <input type="hidden" id="hide" name="P1" value= "{{ P1 }}">
+                <input type="hidden" id="hide" name="P2" value= "{{ P2 }}">
+                <select id="scorewheel" name="T1">
                     <option value="0" selected> 0
                     <option value="1"> 1
                     <option value="2"> 2
@@ -26,7 +30,9 @@
                 </select>
             </div>
             <div class="score">
-                <select name="T2">
+                <input type="hidden" id="hide" name="P3" value= "{{ P3 }}">
+                <input type="hidden" id="hide" name="P4" value= "{{ P4 }}">
+                <select id="scorewheel" name="T2">
                     <option value="0" selected> 0
                     <option value="1"> 1
                     <option value="2"> 2
@@ -39,15 +45,15 @@
             </div>
         </div>
         <div class="scorebutton">
-            <input type="submit" value="Tallenna tulokset">
-        </div>    
+            <input id="scorebutton" type="submit" value="Tallenna päivän tulokset">
+        </div>
     </form>
     
 
-<nav>
-    <ul>
-        <li>
-            <a href="/">Lopeta ja ilman tallennusta</a>
-        </li>
-    </ul>
-</nav>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">Lopeta ja ilman tallennusta</a>
+            </li>
+        </ul>
+    </nav>
