@@ -13,13 +13,9 @@ def games():
     if request.method == "POST":
         players = request.form.getlist("player")
         #number_players = len(players)
-        rand_players = scores.get_players(players)
+        playerchart = scores.get_players(players)
         #if number_players == 5: tähän tulee ehdot eri kaavioihin
-        return render_template("games.html",    P1 = rand_players[0],
-                                                P2 = rand_players[1],
-                                                P3 = rand_players[2],
-                                                P4 = rand_players[3],
-                                                P5 = rand_players[4])
+        return render_template("games.html", playerchart=playerchart)
 
 #jollain pitäisi ratkaista, että saisi päivän kaavion näkyviin ilman, että
 #pelaajat arvotaan uudestaa......

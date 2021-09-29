@@ -15,11 +15,11 @@
 <form action="/games" method="POST" onsubmit="return check()">
     <div class="playerboard">
         <div class="playerbox">Pelaaja 1<input type="checkbox" name="player" value="Pelaaja1"></div>
-        <div class="playerbox">Pelaaja 2<input type="checkbox" name="player" value="Pelaaja2"></div> 
+        <div class="playerbox"><input type="checkbox" name="player" value="Pelaaja2">Pelaaja 2</div> 
         <div class="playerbox">Pelaaja 3<input type="checkbox" name="player" value="Pelaaja3"></div> 
-        <div class="playerbox">Pelaaja 4<input type="checkbox" name="player" value="Pelaaja4"></div> 
+        <div class="playerbox"><input type="checkbox" name="player" value="Pelaaja4">Pelaaja 4</div> 
         <div class="playerbox">Pelaaja 5<input type="checkbox" name="player" value="Pelaaja5"></div> 
-        <div class="playerbox">Pelaaja 6<input type="checkbox" name="player" value="Pelaaja6"></div> 
+        <div class="playerbox"><input type="checkbox" name="player" value="Pelaaja6">Pelaaja 6</div> 
     </div>
     <div class="scorebutton">
         <input id= "gamestart" type="submit" value="Aloita pelit" >
@@ -35,7 +35,7 @@
                 checked++;
             }
         }
-        if (checked > 3) {
+        if (checked > 5) {
             return true;
         }   
         else {

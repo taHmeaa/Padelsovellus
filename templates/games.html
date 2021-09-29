@@ -12,13 +12,14 @@
         <div>Tulos</div>
     </div>
     <form action="/stats" method="POST">
+{% for P in playerchart %}
         <div class="scoreboard">  
-            <div class="team">{{ P1 }} / {{ P2 }}</div>
-            <div class="team">{{ P3 }} / {{ P4 }}</div>     
+            <div class="team">{{ P[0] }} / {{ P[1] }}</div>
+            <div class="team">{{ P[2] }} / {{ P[3] }}</div>     
             <div class="score">
-                <input type="hidden" id="hide" name="P1" value= "{{ P1 }}">
-                <input type="hidden" id="hide" name="P2" value= "{{ P2 }}">
-                <select id="scorewheel" name="T1">
+                <input type="hidden" id="hide" name="P1" value= "{{ P[0] }}">
+                <input type="hidden" id="hide" name="P2" value= "{{ P[1] }}">
+                <select id="scorewheel" name="{{ P[4] }}">
                     <option value="0" selected> 0
                     <option value="1"> 1
                     <option value="2"> 2
@@ -30,9 +31,9 @@
                 </select>
             </div>
             <div class="score">
-                <input type="hidden" id="hide" name="P3" value= "{{ P3 }}">
-                <input type="hidden" id="hide" name="P4" value= "{{ P4 }}">
-                <select id="scorewheel" name="T2">
+                <input type="hidden" id="hide" name="P3" value= "{{ P[2] }}">
+                <input type="hidden" id="hide" name="P4" value= "{{ P[3] }}">
+                <select id="scorewheel" name="{{ P[5] }}">
                     <option value="0" selected> 0
                     <option value="1"> 1
                     <option value="2"> 2
@@ -44,6 +45,7 @@
                 </select>
             </div>
         </div>
+{% endfor %}    
         <div class="scorebutton">
             <input id="scorebutton" type="submit" value="Tallenna päivän tulokset">
         </div>
