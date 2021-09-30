@@ -21,11 +21,24 @@ def results(game_player:list,game_result:list):
 
 def playerstats(players:list, points:list):
     #päivitetään pelaajan tilastot
+
     sql = """ UPDATE players SET scorewon = scorewon + :w, scoreloss = scoreloss + :l 
                 WHERE player = :player """
-    for p in players:
-        db.session.execute(sql, {"w":int(points[0]), "l":int(points[1]), "player":p,})
+    
+    #kaaviossa vaseamman puolen joukkueen pisteet
+    l = 0 
+    for i in range(0, len(players), 4) :
+        db.session.execute(sql, {"w":int(points[l]), "l":int(points[1+l]), "player":players[i],})
+        db.session.execute(sql, {"w":int(points[l]), "l":int(points[1+l]), "player":players[i+1],})
         db.session.commit()
+        l += 2
+    #kaavion oikean puolen joukkueen pisteet
+    r = 0 
+    for i in range(2, len(players), 4) :
+        db.session.execute(sql, {"w":int(points[r+1]), "l":int(points[r]), "player":players[i],})
+        db.session.execute(sql, {"w":int(points[r+1]), "l":int(points[r]), "player":players[i+1],})
+        db.session.commit()
+        r += 2
     return
 
 def gameday_stats():
@@ -36,7 +49,7 @@ def gameday_stats():
 
 def season_stats():
 #    sql = "SELECT player, SUM(score) FROM stats GROUP BY player ORDER BY sum DESC;"
-    sql = "SELECT player, scorewon FROM players;"
+    sql = "SELECT player, scorewon FROM players ORDER BY scorewon DESC;"
 
     result = db.session.execute(sql)
     podium = result.fetchall()
