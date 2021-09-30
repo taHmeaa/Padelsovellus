@@ -17,37 +17,22 @@ def games():
         #if number_players == 5: tähän tulee ehdot eri kaavioihin
         return render_template("games.html", playerchart=playerchart)
 
-#jollain pitäisi ratkaista, että saisi päivän kaavion näkyviin ilman, että
-#pelaajat arvotaan uudestaa......
-#@app.route("/gameday", methods=["GET", "POST"])
-#def gameday():
-#    if request.method == "POST":
-#        #joukkueen pisteet
-#        T1_points = request.form["T1"]
-#        T2_points = request.form["T2"]
-#        1. joukkueen pelaajat
-#        T1_P1 = request.form["P1"]
-#        T1_P2 = request.form["P2"]
-#        2. joukkuuen pisteet
-#        T2_P1 = request.form["P3"]
-#        T2_P2 = request.form["P4"]
-#        if statistic.results(T1_points, T2_points, T1_P1, T1_P2, T2_P1, T2_P2):
-#           return render_template("games.html") 
+@app.route("/gameday", methods=["GET", "POST"])
+def gameday():
+    if request.method == "POST":
+        game_results = request.form.getlist("gamescore")
+        game_players = request.form.getlist("gamedata")
+        #tulokset = statistic.results(game_res)
+        return render_template("dayscores.html", tulokset = game_results, pelaajat = game_players) 
 
 @app.route("/stats", methods=["GET", "POST"])
 def stats():
     if request.method == "POST":
-        #joukkueen pisteet
-        T1_points = request.form["T1"]
-        T2_points = request.form["T2"]
-        #1. joukkueen pelaajat
-        T1_P1 = request.form["P1"]
-        T1_P2 = request.form["P2"]
-        #2. joukkuuen pisteet
-        T2_P1 = request.form["P3"]
-        T2_P2 = request.form["P4"]
-        if statistic.results(T1_points, T2_points, T1_P1, T1_P2, T2_P1, T2_P2):
-            return redirect("/")                   
+        game_results = request.form.getlist("gamescore")
+        game_players = request.form.getlist("gamedata")
+        statistic.results(game_players, game_results)
+        statistic.playerstats(game_players, game_results)
+        return redirect("/")                   
         
 @app.route("/login", methods=["GET", "POST"])
 def login():

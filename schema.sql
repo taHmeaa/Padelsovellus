@@ -7,7 +7,7 @@ CREATE TABLE users (
 CREATE TABLE players (
     id SERIAL PRIMARY KEY,
     player TEXT UNIQUE,
-    scorewon INTEGER.
+    scorewon INTEGER,
     scoreloss INTEGER
 );
 
