@@ -24,7 +24,6 @@ def playerstats(players:list, points:list):
 
     sql = """ UPDATE players SET scorewon = scorewon + :w, scoreloss = scoreloss + :l 
                 WHERE player = :player """
-    
     #kaaviossa vaseamman puolen joukkueen pisteet
     l = 0 
     for i in range(0, len(players), 4) :
@@ -48,9 +47,7 @@ def gameday_stats():
     return gameday_podium
 
 def season_stats():
-#    sql = "SELECT player, SUM(score) FROM stats GROUP BY player ORDER BY sum DESC;"
     sql = "SELECT player, scorewon FROM players ORDER BY scorewon DESC;"
-
     result = db.session.execute(sql)
     podium = result.fetchall()
     return podium
