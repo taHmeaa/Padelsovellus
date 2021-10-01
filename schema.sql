@@ -24,7 +24,7 @@ CREATE TABLE games (
     game_time TIMESTAMP  
 );
 
-CREATE TABLE stats (
+CREATE TABLE daystats (
     id SERIAL PRIMARY KEY,
     player TEXT,
     score INTEGER,

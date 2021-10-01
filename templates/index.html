@@ -10,42 +10,44 @@
 
 {% if session.user_id %}
 
-<div><h2>Valitse päivän pelaajat (vähintään 5)</h2></div>
+<div><h2>Valitse päivän pelaajat (vähintään 4)</h2></div>
 
-<form action="/games" method="POST" onsubmit="return check()">
+<form action="/games" method="POST" onsubmit="check(this)">
     <div class="playerboard">
-        <div class="playerbox">Pelaaja 1<input type="checkbox" name="player" value="Pelaaja1">         </div>
-        <div class="playerbox">         <input type="checkbox" name="player" value="Pelaaja2">Pelaaja 2</div> 
-        <div class="playerbox">Pelaaja 3<input type="checkbox" name="player" value="Pelaaja3">         </div> 
-        <div class="playerbox">         <input type="checkbox" name="player" value="Pelaaja4">Pelaaja 4</div> 
-        <div class="playerbox">Pelaaja 5<input type="checkbox" name="player" value="Pelaaja5">         </div> 
-        <div class="playerbox">         <input type="checkbox" name="player" value="Pelaaja6">Pelaaja 6</div> 
+        <label class="playerbox">Pelaaja 1<input type="checkbox" id="player" name="player" value="Pelaaja1">         </label>
+        <label class="playerbox">         <input type="checkbox" id="player" name="player" value="Pelaaja2">Pelaaja 2</label>
+        <label class="playerbox">Pelaaja 3<input type="checkbox" id="player" name="player" value="Pelaaja3">         </label> 
+        <label class="playerbox">         <input type="checkbox" id="player" name="player" value="Pelaaja4">Pelaaja 4</label> 
+        <label class="playerbox">Pelaaja 5<input type="checkbox" id="player" name="player" value="Pelaaja5">         </label> 
+        <label class="playerbox">         <input type="checkbox" id="player" name="player" value="Pelaaja6">Pelaaja 6</label> 
     </div>
     <div class="scorebutton">
-        <input id= "gamestart" type="submit" value="Aloita pelit" >
-    </div>     
+        <input id= "gamestart" type="submit" value="Aloita pelit">
+    </div>
+         
 </form>
 <script>
-    function check() {
-        var checked = 0;
-        var player = form.getElementById("player");
-        var chks = player.getElementsByTagName("input");
-        for (var i = 0; i < chks.length; i++) {
-            if (chks[i].checked) {
-                checked++;
-            }
-        }
-        if (checked > 5) {
-            return true;
-        }   
-        else {
-            alert("Valitse vähintään 5 pelaajaa");
-            return false;
+    function check(form) {
+    var checked = 0;
+    var player = document.getElementsByTagName("player");
+    var chks = player.getElementsByTagName("input");
+    for (var i = 0; i < chks.length; i++) {
+        if (chks[i].checked) {
+            checked++;
         }
     }
+    if (checked > 3) {
+        return true;
+    }   
+    else {
+        alert("Valitse vähintään 5 pelaajaa");
+        return false;
+    }
+}
 </script>
 <div><h2>Tähän tulee kausitilastot näkyviin (kesken)</h2></div>
 <br>
+
 <div class="scoreboard">{{ podium }}</div>
 <nav>
     <ul>
@@ -55,12 +57,13 @@
     </ul>
 </nav>
 {% else %}
+<p>{{ message }}</p><br>
 <div class="login">
     <form action="/login" method="post">
         <label for="username">Tunnus:</label>
-        <input type="text" name="username">
+        <input type="text" id = "username" name="username" placeholder="Syötä tunnus" required>
         <label for="password">Salasana:</label>
-        <input type="password" name="password">
+        <input type="password" name="password" placeholder="Syötä salasana" required>
         <input id=button type="submit" value="Kirjaudu">
     </form>
 </div>

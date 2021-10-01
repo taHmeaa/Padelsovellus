@@ -1,11 +1,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/static/style.css">
+<p>{{ message }}</p><br>
 <div>
     <form action="/register" method="post">
         <div><label for="username">Tunnus:</label></div>
-        <div><input type="text" name="username"></div>
+        <div><input type="text" name="username" minlength="4" maxlength="12" required></div>
         <div><label for="password">Salasana:</label></div>
-        <div><input type="password" name="password1"></div>
+        <div><input type="password" name="password1" minlength="4" maxlength="16"required></div>
         <div><label for="password">Salasana uudestaan:</label></div>
         <input type="password" name="password2">
         <input type="submit" value="Luo tunnus">

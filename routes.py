@@ -9,21 +9,14 @@ def index():
 
 @app.route("/games", methods=["GET", "POST"])
 def games():
-    #tähän pitäisi saada testi, että on valittu vähintään 5 pelaajaa
     if request.method == "POST":
         players = request.form.getlist("player")
-        #number_players = len(players)
-        playerchart = scores.get_players(players)
-        #if number_players == 5: tähän tulee ehdot eri kaavioihin
-        return render_template("games.html", playerchart=playerchart)
-
-@app.route("/gameday", methods=["GET", "POST"])
-def gameday():
-    if request.method == "POST":
-        game_results = request.form.getlist("gamescore")
-        game_players = request.form.getlist("gamedata")
-        #tulokset = statistic.results(game_res)
-        return render_template("dayscores.html", tulokset = game_results, pelaajat = game_players) 
+        #tarkastetaan, että pelaaja valinnat ovat oikein
+        if len(players) > 3:
+            playerchart = scores.get_players(players)
+            return render_template("games.html", playerchart=playerchart)
+        else:
+            return redirect("/")
 
 @app.route("/stats", methods=["GET", "POST"])
 def stats():
@@ -32,7 +25,8 @@ def stats():
         game_players = request.form.getlist("gamedata")
         statistic.results(game_players, game_results)
         statistic.playerstats(game_players, game_results)
-        return redirect("/")                   
+        day_podium = statistic.gameday_stats()
+        return render_template("dayscores.html", day_podium = day_podium)                   
         
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -44,7 +38,7 @@ def login():
         if users.login(username, password):
             return redirect("/")
         else:
-            return render_template("error.html", message="Väärä tunnus tai salasana")
+            return render_template("index.html", message="Kirjautuminen ei onnistunut")
 
 @app.route("/logout")
 def logout():
@@ -62,8 +56,8 @@ def register():
         password1 = request.form["password1"]
         password2 = request.form["password2"]
         if password1 != password2:
-            return render_template("error.html", message="Salasanat eroavat")
+            return render_template("register.html", message="Salasanat eroavat")
         if users.register(username, password1):
             return redirect("/")
         else:
-            return render_template("error.html", message="Rekisteröinti ei onnistunut")
+            return render_template("register.html", message="Rekisteröinti ei onnistunut")

@@ -12,15 +12,15 @@ body {
     color: black;
     font-weight: bold;
     text-align: center;
-    padding: 1em 1em;
-    font-size: 2em;
+    padding: 0.5em;
+    font-size: 1.5em;
     border-radius: .5em;
-    margin-top: .5em;
+    margin: 12px;
 }
 
 h2 {
     text-align: center;
-    margin: 1em;
+    margin: 1.5em 1em .5em 1em;
     font-size: 1.5em;
     font-weight: bold;
 }
@@ -39,7 +39,7 @@ h2 {
 }
 .dayscores{
     background: rgba(86, 230, 163, 0.562);
-    margin-top: 1em;
+    margin: 12px;
     padding: 1em;
     border-radius: .5em;
     display: grid;
@@ -50,17 +50,17 @@ h2 {
 }
 .scoreboard {
     background: rgb(255, 96, 96, 0.562);
-    margin-top: 1em;
+    margin: 12px;
     padding: 1em;
     border-radius: .5em;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     font-family: 'Quicksand', sans-serif;
-    
 }
+    
 
 .score {
-    padding: 1em;
+    padding: unset;
     text-align: center;
 }
 
@@ -69,8 +69,9 @@ h2 {
     text-align: center;
     background-color: bisque;
     border-radius: .5em;
-    margin: 1em;
+    margin: 1em 3em 1em 3em;
     padding: 1em;
+    font-size: 0.8em;
 }
 .scorebutton{
     margin: .5em;
@@ -116,8 +117,8 @@ form #gamestart{
     border-radius: .5em;
     text-align: center;
     background: antiquewhite;
-    padding: .5em;
-    margin: 1em;
+    padding: 0.5em;
+    margin: 0.7em 3.5em;
 }
 
 
