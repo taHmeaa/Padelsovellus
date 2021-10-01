@@ -10,6 +10,9 @@ def index():
 @app.route("/games", methods=["GET", "POST"])
 def games():
     if request.method == "POST":
+ #       if session["csrf_token"] != request.form["csrf_token"]:
+ #           abort(403)
+ #       else:
         players = request.form.getlist("player")
         #tarkastetaan, että pelaaja valinnat ovat oikein
         if len(players) > 3:

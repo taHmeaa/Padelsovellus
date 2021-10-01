@@ -14,22 +14,23 @@
 
 <form action="/games" method="POST" onsubmit="check(this)">
     <div class="playerboard">
-        <label class="playerbox">Pelaaja 1<input type="checkbox" id="player" name="player" value="Pelaaja1">         </label>
-        <label class="playerbox">         <input type="checkbox" id="player" name="player" value="Pelaaja2">Pelaaja 2</label>
-        <label class="playerbox">Pelaaja 3<input type="checkbox" id="player" name="player" value="Pelaaja3">         </label> 
-        <label class="playerbox">         <input type="checkbox" id="player" name="player" value="Pelaaja4">Pelaaja 4</label> 
-        <label class="playerbox">Pelaaja 5<input type="checkbox" id="player" name="player" value="Pelaaja5">         </label> 
-        <label class="playerbox">         <input type="checkbox" id="player" name="player" value="Pelaaja6">Pelaaja 6</label> 
+        <label class="playerbox">Pelaaja 1<input type="checkbox" id="player1" name="player" value="Pelaaja1">         </label>
+        <label class="playerbox">         <input type="checkbox" id="player2" name="player" value="Pelaaja2">Pelaaja 2</label>
+        <label class="playerbox">Pelaaja 3<input type="checkbox" id="player3" name="player" value="Pelaaja3">         </label> 
+        <label class="playerbox">         <input type="checkbox" id="player4" name="player" value="Pelaaja4">Pelaaja 4</label> 
+        <label class="playerbox">Pelaaja 5<input type="checkbox" id="player5" name="player" value="Pelaaja5">         </label> 
+        <label class="playerbox">         <input type="checkbox" id="player6" name="player" value="Pelaaja6">Pelaaja 6</label> 
     </div>
     <div class="scorebutton">
         <input id= "gamestart" type="submit" value="Aloita pelit">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </div>
          
 </form>
 <script>
     function check(form) {
     var checked = 0;
-    var player = document.getElementsByTagName("player");
+    var player = document.getElementById("player");
     var chks = player.getElementsByTagName("input");
     for (var i = 0; i < chks.length; i++) {
         if (chks[i].checked) {
