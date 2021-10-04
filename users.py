@@ -1,5 +1,5 @@
 from db import db
-from flask import session
+from flask import session, abort, request
 from werkzeug.security import check_password_hash, generate_password_hash
 import secrets
 
@@ -16,6 +16,19 @@ def login(username, password):
             return True
         else:
             return False
+
+def csrf():
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
+
+def players(add_player):
+    try:
+        sql = """INSERT INTO players (player, scorewon, scoreloss)
+                VALUES (:player, 0, 0);"""
+        db.session.execute(sql, {"player":add_player})
+        db.session.commit()
+    except:
+        return False
 
 def logout():
     del session["user_id"]

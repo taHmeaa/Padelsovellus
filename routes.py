@@ -1,30 +1,44 @@
+from operator import methodcaller
 from app import app
-from flask import render_template, request, redirect, session, abort
-import users, statistic, scores
+from flask import render_template, request, redirect
+import users, statistic, gamebracket
 
 
 @app.route("/")
 def index():
+    players = gamebracket.get_players()
     podium = statistic.season_stats()
-    return render_template("index.html", podium = podium)
+    return render_template("index.html", podium = podium, players = players)
 
 @app.route("/games", methods=["GET", "POST"])
 def games():
     if request.method == "POST":
-        if session["csrf_token"] != request.form["csrf_token"]:
-            abort(403)
-
+        users.csrf()
         players = request.form.getlist("player")
-        #tarkastetaan, että pelaaja valinnat ovat oikein
+        rounds = int(request.form["roundvalue"])
+        #tarkastetaan, että pelaajavalinnat ovat oikein 
         if len(players) > 3:
-            playerchart = scores.get_players(players)
-            return render_template("games.html", playerchart=playerchart)
+            playerchart = gamebracket.get_brackets(players, True)
+            return render_template("games.html", playerchart=playerchart, rounds=rounds)
         else:
             return redirect("/")
 
+@app.route("/addplayer", methods=["POST"])
+def addplayer():
+    if request.method == "POST":
+        users.csrf()
+        add_player = request.form["add_player"]
+        if 3 < len(add_player) < 9:
+            if users.players(add_player):
+                return redirect("/")
+            else:
+                return redirect("/")
+        else:
+            return redirect("/") 
 @app.route("/stats", methods=["GET", "POST"])
 def stats():
     if request.method == "POST":
+        users.csrf()
         game_results = request.form.getlist("gamescore")
         game_players = request.form.getlist("gamedata")
         statistic.results(game_players, game_results)
@@ -50,7 +64,6 @@ def logout():
     return redirect("/")
 
 
-#tällä  hetkellä vain yksi tunnus sivustolle.
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":

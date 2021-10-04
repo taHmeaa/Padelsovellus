@@ -5,6 +5,11 @@
 
 <div><h2>Päivän tulokset</h2></div>
 <br>
-<div class="scoreboard">{{ day_podium }}</div>
+<div class="scoreboard">
+    {% for d in day_podium %}
+        <div>{{ d[0] }} </div>
+        <div>{{ d[1] }} </div>
+    {% endfor%}
+</div>
 <br>
-<div><nav><a href="/">Palaa etusivulle</a></nav></div>
+<div><nav><h2><a href="/">Palaa etusivulle</a></h2></nav></div>

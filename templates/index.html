@@ -10,16 +10,40 @@
 
 {% if session.user_id %}
 
+<div>{{ name_error }}</div>
+<form action="/addplayer" method="POST" class="playeradd" onsubmit="checkplayer(this)">
+    <div>Lisää pelaaja: <input type="text" name="add_player" minlength="4" maxlength="10" required> </div>
+    <div><input type="submit" value="Tallenna"></div>
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+</form>
+
+<script>
+    function checkplayer(form) {
+        if (form.player.value.length > 3 && form.player.value.length < 11) {
+            return true
+        }
+        
+        else {
+            alert("Nimen pituus pitää olla 4-10 kirjainta");
+            return false;
+        }
+    }
+</script>
+
 <div><h2>Valitse päivän pelaajat (vähintään 4)</h2></div>
 
 <form action="/games" method="POST" onsubmit="check(this)">
     <div class="playerboard">
-        <label class="playerbox">Pelaaja 1<input type="checkbox" id="player1" name="player" value="Pelaaja1">         </label>
-        <label class="playerbox">         <input type="checkbox" id="player2" name="player" value="Pelaaja2">Pelaaja 2</label>
-        <label class="playerbox">Pelaaja 3<input type="checkbox" id="player3" name="player" value="Pelaaja3">         </label> 
-        <label class="playerbox">         <input type="checkbox" id="player4" name="player" value="Pelaaja4">Pelaaja 4</label> 
-        <label class="playerbox">Pelaaja 5<input type="checkbox" id="player5" name="player" value="Pelaaja5">         </label> 
-        <label class="playerbox">         <input type="checkbox" id="player6" name="player" value="Pelaaja6">Pelaaja 6</label> 
+        {% for p in players %}
+        <label class="playerbox">{{ p[0] }}<input type="checkbox" id="player" name="player" value="{{ p[0] }}"></label>
+        {% endfor %} 
+    </div>
+    <div class="rounds">
+        Kierrosten lukumäärä<select id="roundwheel" name="roundvalue">
+                            <option value="1" selected> 1
+                            <option value="2"> 2
+                            <option value="3"> 3       
+                            </select>    
     </div>
     <div class="scorebutton">
         <input id= "gamestart" type="submit" value="Aloita pelit">
@@ -27,11 +51,11 @@
     </div>
          
 </form>
+
 <script>
     function check(form) {
     var checked = 0;
-    var player = document.getElementById("player");
-    var chks = player.getElementsByTagName("input");
+    var chks = document.getElementsByTagName("input");
     for (var i = 0; i < chks.length; i++) {
         if (chks[i].checked) {
             checked++;
@@ -41,23 +65,24 @@
         return true;
     }   
     else {
-        alert("Valitse vähintään 5 pelaajaa");
+        alert("Valitse vähintään 4 pelaajaa");
         return false;
     }
 }
 </script>
-<div><h2>Tähän tulee kausitilastot näkyviin (kesken)</h2></div>
-<br>
 
-<div class="scoreboard">{{ podium }}</div>
-<nav>
-    <ul>
-        <li>
-            <a href="/logout">Kirjaudu ulos</a>
-        </li>
-    </ul>
-</nav>
+<div><h2>KAUSITILASTO</h2></div>
+
+<div class="podiumboard">
+    {% for p in podium %}
+        <div class = "name"> {{ p[0] }}</div>
+        <div class = "points"> {{ p[1] }}</div>
+    {% endfor %}   
+</div>
+<nav><h2><a href="/logout">Kirjaudu ulos</a></h2></nav>
+
 {% else %}
+
 <p>{{ message }}</p><br>
 <div class="login">
     <form action="/login" method="post">
@@ -68,13 +93,7 @@
         <input id=button type="submit" value="Kirjaudu">
     </form>
 </div>
-<nav>
-    <ul>
-        <li>
-            <a href="/register"> rekisteröidy</a>
-        </li>
-    </ul>
-</nav>
+<nav><h2><a href="/register"> rekisteröidy</a></h2></nav>
 
 {% endif %}
 

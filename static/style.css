@@ -38,7 +38,7 @@ h2 {
     margin-top: .5em;
 }
 .dayscores{
-    background: rgba(86, 230, 163, 0.562);
+    background:  rgb(142, 214, 127);
     margin: 12px;
     padding: 1em;
     border-radius: .5em;
@@ -57,8 +57,41 @@ h2 {
     grid-template-columns: repeat(2, 1fr);
     font-family: 'Quicksand', sans-serif;
 }
-    
 
+.podiumboard {
+    background: rgb(255, 96, 96, 0.562);
+    margin: 1em;
+    padding: 1em 1em 1em 1em;
+    border-radius: .5em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-family: 'Quicksand', sans-serif;
+} 
+.points{
+    text-align: left;
+    margin: 1em;
+    font-size: 1em;
+    font-weight: bold;
+    padding: .5em;
+}
+
+.name{
+    text-align: center;
+    margin: 1em 1em 1em 14em;
+    font-size: 1em;
+    font-weight: bold;
+    padding: .5em;
+    background: bisque;
+    border-radius: .5em;
+}
+.playeradd{
+    background-color: bisque;
+    border-radius: .5em;
+    margin: 1em 27em 1em 3em;
+    padding: 1em;
+    font-size: 0.8em;
+
+}
 .score {
     padding: unset;
     text-align: center;
@@ -72,7 +105,19 @@ h2 {
     margin: 1em 3em 1em 3em;
     padding: 1em;
     font-size: 0.8em;
+
 }
+
+.rounds{
+    text-align: center;
+    background-color: bisque;
+    border-radius: .5em;
+    margin: 0em 10em 0em 10em;
+    padding: .7em;
+    font-size: 1em;
+
+}
+
 .scorebutton{
     margin: .5em;
     padding: .5em;
@@ -96,7 +141,12 @@ form #scorewheel {
     padding: .2em;
 
 }
+form #roundwheel{
+    font-size: 1em;
+    padding: .2em;
+    margin-left: 1em;
 
+}
 form #gamestart{
     padding: .5em;
     font-size: 1em;
@@ -130,6 +180,7 @@ form #button {
     text-align: center;
     width: 5em;
     background: tan;
+    margin: .5em .5em .5em 0em;
 }
 
 form #button:hover{
