@@ -12,8 +12,9 @@
 
 <div>{{ name_error }}</div>
 <form action="/addplayer" method="POST" class="playeradd" onsubmit="checkplayer(this)">
-    <div>Lisää pelaaja: <input type="text" name="add_player" minlength="4" maxlength="10" required> </div>
-    <div><input type="submit" value="Tallenna"></div>
+    <div>Lisää pelaaja: <input id ="username" type="text" name="add_player" minlength="4" maxlength="10" required>
+        <input id ="button" type="submit" value="Tallenna">
+    </div>
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 
@@ -86,11 +87,11 @@
 <p>{{ message }}</p><br>
 <div class="login">
     <form action="/login" method="post">
-        <label for="username">Tunnus:</label>
-        <input type="text" id = "username" name="username" placeholder="Syötä tunnus" required>
-        <label for="password">Salasana:</label>
-        <input type="password" name="password" placeholder="Syötä salasana" required>
-        <input id=button type="submit" value="Kirjaudu">
+        <div><label for="username">Tunnus:</label></div>
+        <div><input type="text" id = "username" name="username" placeholder="Syötä tunnus" required></div>
+        <div><label for="password">Salasana:</label></div>
+        <div><input type="password" id = "password" name="password" placeholder="Syötä salasana" required></div>
+        <div><input id=button type="submit" value="Kirjaudu"></div>
     </form>
 </div>
 <nav><h2><a href="/register"> rekisteröidy</a></h2></nav>

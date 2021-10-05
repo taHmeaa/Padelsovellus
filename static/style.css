@@ -8,12 +8,12 @@ body {
 
 
 .header {
-    background: rgb(142, 214, 127);
+    background: rgb(151, 211, 138);
     color: black;
     font-weight: bold;
     text-align: center;
     padding: 0.5em;
-    font-size: 1.5em;
+    font-size: 1.2em;
     border-radius: .5em;
     margin: 12px;
 }
@@ -26,26 +26,20 @@ h2 {
 }
 
 .login {
-    margin: 0 auto;
+    margin: 12px;
     padding: .5em;
     background: blanchedalmond;
     border-radius: .5em;
-    max-width: 15em;
-    display  : grid;
-    grid-template-columns: 5em 10em;
-    grid-row-gap: .3em;
-    margin-bottom: 2em;
-    margin-top: .5em;
+    display: inline-block;
 }
 .dayscores{
-    background:  rgb(142, 214, 127);
+    background: rgb(255, 96, 96, 0.562);
     margin: 12px;
-    padding: 1em;
+    padding: 1em 1em 1em 1em;
     border-radius: .5em;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     font-family: 'Quicksand', sans-serif;
-    text-align: center;
 
 }
 .scoreboard {
@@ -60,7 +54,7 @@ h2 {
 
 .podiumboard {
     background: rgb(255, 96, 96, 0.562);
-    margin: 1em;
+    margin: 12px;
     padding: 1em 1em 1em 1em;
     border-radius: .5em;
     display: grid;
@@ -68,16 +62,18 @@ h2 {
     font-family: 'Quicksand', sans-serif;
 } 
 .points{
-    text-align: left;
+    text-align: center;
     margin: 1em;
     font-size: 1em;
     font-weight: bold;
     padding: .5em;
+    background: bisque;
+    border-radius: .5em;
 }
 
 .name{
     text-align: center;
-    margin: 1em 1em 1em 14em;
+    margin: 1em;
     font-size: 1em;
     font-weight: bold;
     padding: .5em;
@@ -87,7 +83,7 @@ h2 {
 .playeradd{
     background-color: bisque;
     border-radius: .5em;
-    margin: 1em 27em 1em 3em;
+    margin: 12px;
     padding: 1em;
     font-size: 0.8em;
 
@@ -112,10 +108,9 @@ h2 {
     text-align: center;
     background-color: bisque;
     border-radius: .5em;
-    margin: 0em 10em 0em 10em;
+    margin: 12px;
     padding: .7em;
     font-size: 1em;
-
 }
 
 .scorebutton{
@@ -154,6 +149,22 @@ form #gamestart{
     text-align: center;
 
 }
+
+form #button {
+    padding: 4px;
+    border-radius: .5em;
+    border: none;
+    text-align: center;
+    width: 6em;
+    background: tan;
+    margin: 0.2em .5em .5em 0em;
+}
+
+form #button:hover{
+    background: rgb(138, 119, 94);
+    color: white;
+}
+
 .playerboard{
     margin-top: 1em;
     padding: 1em;
@@ -163,29 +174,13 @@ form #gamestart{
     font-family: 'Quicksand', sans-serif;
     text-align: center;
 }
+
 .playerbox{
     border-radius: .5em;
     text-align: center;
     background: antiquewhite;
     padding: 1em;
     margin: 0.7em 1em;
-}
-
-
-form #button {
-    grid-column-start: 2;
-    padding:5px;
-    border-radius:.5em;
-    border: none;
-    text-align: center;
-    width: 5em;
-    background: tan;
-    margin: .5em .5em .5em 0em;
-}
-
-form #button:hover{
-    background: rgb(138, 119, 94);
-    color: white;
 }
 
 #hide{
@@ -196,6 +191,24 @@ nav ul {
     padding: 0;
     margin: .5em;
     text-align: center;
+}
+form #username{
+    background: whitesmoke;
+    padding: .3em;
+    width: 12em;
+    border-radius: .5em;
+    margin: 0.2em .5em .5em 0em;
+
+}
+
+form #password{
+    background: whitesmoke;
+    padding: .3em;
+    width: 12em;
+    border-radius: .5em;
+    margin: 0.2em .5em .5em 0em;
+
+
 }
 
 .content {

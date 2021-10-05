@@ -17,7 +17,7 @@ def results(game_player:list,game_result:list):
                                 "p4": game_player[3+i], "p4score": int(game_result[1+s])})
         s += 2
         db.session.commit()
-    #lisätään päivän tulokset daystats-tauluun ja nollataan taulu. Tähän joku fiksumpi ratkaisu
+    #lisätään päivän tulokset daystats-tauluun ja nollataan taulu. Tähän joku fiksumpi ratkaisu...
     db.session.execute("DROP TABLE daystats;")
     db.session.execute("""CREATE TABLE daystats (id SERIAL PRIMARY KEY, player TEXT,
                          score INTEGER, game_time TIMESTAMP);""")

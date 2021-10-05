@@ -35,6 +35,7 @@ def addplayer():
                 return redirect("/")
         else:
             return redirect("/") 
+            
 @app.route("/stats", methods=["GET", "POST"])
 def stats():
     if request.method == "POST":
