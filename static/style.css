@@ -90,9 +90,6 @@ h2 {
 }
 
 .navbanner{
-    margin: 12px;
-    padding: 1em 1em 1em 1em;
-    border-radius: .5em;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     font-family: 'Quicksand', sans-serif;
@@ -101,10 +98,9 @@ h2 {
 .navlinks{
     border-radius: .5em;
     text-align: center;
-    background: antiquewhite;
-    padding: 1em;
-    margin:  1em;
-}
+    background: bisque;
+    padding: .5em;
+    margin: .5em 12px;
 
 .score {
     padding: unset;
@@ -205,11 +201,7 @@ form #button:hover{
     font-size: xx-small;
 
 }
-nav ul {
-    padding: 0;
-    margin: .5em;
-    text-align: center;
-}
+
 form #username{
     background: whitesmoke;
     padding: .3em;
