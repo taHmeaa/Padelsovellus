@@ -88,6 +88,24 @@ h2 {
     font-size: 0.8em;
 
 }
+
+.navbanner{
+    margin: 12px;
+    padding: 1em 1em 1em 1em;
+    border-radius: .5em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.navlinks{
+    border-radius: .5em;
+    text-align: center;
+    background: antiquewhite;
+    padding: 1em;
+    margin:  1em;
+}
+
 .score {
     padding: unset;
     text-align: center;

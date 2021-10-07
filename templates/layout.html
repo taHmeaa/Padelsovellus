@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<title>Paistilan Padel - {% block title %}{% endblock %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/style.css">
+
+<body>
+    <div class="header">
+        <h1>Paistilan Padel</h1>
+    </div>
+    <div class="navbanner">
+        <div><a class ="navlinks" href="/">Etusivu</a></div>
+        <div><a class ="navlinks" href="/stats">Tilastot</a></div>
+        <div><a class ="navlinks" href="/playerapp">Pelaajat</a></div>
+        <div><a class ="navlinks" href="/register">Rekisteröidy</a></div>
+    </div>
+{% if session.user_id %}
+
+{% block content %}{% endblock %}
+
+
+    <nav><h2><a href="/logout">Lopeta ja kirjaudu ulos</a></h2></nav>
+{% else %}
+
+<p>{{ message }}</p><br>
+<div class="login">
+    <form action="/login" method="post">
+        <div><label for="username">Tunnus:</label></div>
+        <div><input type="text" id = "username" name="username" placeholder="Syötä tunnus" required></div>
+        <div><label for="password">Salasana:</label></div>
+        <div><input type="password" id = "password" name="password" placeholder="Syötä salasana" required></div>
+        <div><input id=button type="submit" value="Kirjaudu"></div>
+    </form>
+</div>
+
+{% endif %}
+
+
+</body>

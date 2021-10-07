@@ -7,8 +7,7 @@ import users, statistic, gamebracket
 @app.route("/")
 def index():
     players = gamebracket.get_players()
-    podium = statistic.season_stats()
-    return render_template("index.html", podium = podium, players = players)
+    return render_template("index.html", players = players)
 
 @app.route("/games", methods=["GET", "POST"])
 def games():
@@ -23,18 +22,21 @@ def games():
         else:
             return redirect("/")
 
-@app.route("/addplayer", methods=["POST"])
-def addplayer():
+@app.route("/playerapp", methods=["GET", "POST"])
+def playerapp():
     if request.method == "POST":
         users.csrf()
         add_player = request.form["add_player"]
         if 3 < len(add_player) < 9:
             if users.players(add_player):
-                return redirect("/")
+                return redirect("/playerapp")
             else:
-                return redirect("/")
+                return redirect("/playerapp")
         else:
-            return redirect("/") 
+            return redirect("/playerapp") 
+    players = gamebracket.get_players()
+    return render_template("players.html", players = players)
+
             
 @app.route("/stats", methods=["GET", "POST"])
 def stats():
@@ -46,7 +48,9 @@ def stats():
         statistic.playerstats(game_players, game_results)
         day_podium = statistic.gameday_stats()
         return render_template("dayscores.html", day_podium = day_podium)                   
-        
+    podium =statistic.season_stats()
+    return render_template("seasonstats.html", podium = podium)  
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":

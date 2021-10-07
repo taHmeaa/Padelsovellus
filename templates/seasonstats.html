@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Tilastot{% endblock %}
+{% block content %}
+
+<div><h2>KAUSITILASTO</h2></div>
+
+<div class="podiumboard">
+    {% for p in podium %}
+        <div class = "name"> {{ p[0] }}</div>
+        <div class = "points"> {{ p[1] }}</div>
+    {% endfor %}   
+</div>
+
+{% endblock %}

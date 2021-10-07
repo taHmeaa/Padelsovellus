@@ -2,6 +2,7 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT UNIQUE,
     password TEXT
+    is_admin BOOLEAN
 );
 
 CREATE TABLE players (
@@ -21,6 +22,7 @@ CREATE TABLE games (
     p3score INTEGER,
     p4 TEXT,
     p4score INTEGER,
+    tournament_id INT REFERENCES tournaments, 
     game_time TIMESTAMP  
 );
 
@@ -29,4 +31,9 @@ CREATE TABLE daystats (
     player TEXT,
     score INTEGER,
     game_time TIMESTAMP  
+);
+
+CREATE TABLE tournaments (
+    id SERIAL PRIMARY KEY,
+    tournament TEXT UNIQUE
 );

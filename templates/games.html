@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<title>Pelit</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/static/style.css">
-
+{% extends "layout.html" %}
+{% block title %}Pelit{% endblock %}
+{% block content %}
 <body>
     <form action="/stats" method="POST">
     {% for r in range(rounds) %}
@@ -47,5 +45,6 @@
             <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         </div>
     </form>
-    <nav>><h2><a href="/">Lopeta ja ilman tallennusta</a></h2></nav>
+    <nav><h2><a href="/">Lopeta ja ilman tallennusta</a></h2></nav>
 </body>
+{% endblock %}

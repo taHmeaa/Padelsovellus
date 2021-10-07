@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Pelaajat{% endblock %}
+{% block content %}
+
+<div>{{ name_error }}</div>
+<form action="/playerapp" method="POST" class="playeradd" onsubmit="checkplayer(this)">
+    <div>Lisää pelaaja: <input id ="username" type="text" name="add_player" minlength="4" maxlength="10" pattern="[A-Za-z]+" placeholder="vain kirjaimia" required>
+        <input id ="button" type="submit" value="Lisää">
+    </div>
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+</form>
+
+<script src="{{url_for('static', filename='jschecks.js')}}"></script>
+
+<div class="playerboard">
+    {% for p in players %}
+    <label class="playerbox">{{ p[0] }}<input type="checkbox" id="player" name="player" value="{{ p[0] }}"></label>
+    {% endfor %} 
+</div>
+
+{% endblock %}

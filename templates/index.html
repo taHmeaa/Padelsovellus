@@ -1,37 +1,8 @@
-<!DOCTYPE html>
-<title>Paistilan Padel</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/static/style.css">
+{% extends "layout.html" %}
+{% block title %}Etusivu{% endblock %}
+{% block content %}
 
-<body>
-    <div class="header">
-        <h1>Paistilan Padel</h1>
-    </div>
-
-{% if session.user_id %}
-
-<div>{{ name_error }}</div>
-<form action="/addplayer" method="POST" class="playeradd" onsubmit="checkplayer(this)">
-    <div>Lisää pelaaja: <input id ="username" type="text" name="add_player" minlength="4" maxlength="10" required>
-        <input id ="button" type="submit" value="Tallenna">
-    </div>
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-</form>
-
-<script>
-    function checkplayer(form) {
-        if (form.player.value.length > 3 && form.player.value.length < 11) {
-            return true
-        }
-        
-        else {
-            alert("Nimen pituus pitää olla 4-10 kirjainta");
-            return false;
-        }
-    }
-</script>
-
-<div><h2>Valitse päivän pelaajat (vähintään 4)</h2></div>
+<div><h2>Valitse päivän pelaajat</h2></div>
 
 <form action="/games" method="POST" onsubmit="check(this)">
     <div class="playerboard">
@@ -53,49 +24,10 @@
          
 </form>
 
-<script>
-    function check(form) {
-    var checked = 0;
-    var chks = document.getElementsByTagName("input");
-    for (var i = 0; i < chks.length; i++) {
-        if (chks[i].checked) {
-            checked++;
-        }
-    }
-    if (checked > 3) {
-        return true;
-    }   
-    else {
-        alert("Valitse vähintään 4 pelaajaa");
-        return false;
-    }
-}
-</script>
+<script src="{{url_for('static', filename='jschecks.js')}}"></script>
+</body>
 
-<div><h2>KAUSITILASTO</h2></div>
 
-<div class="podiumboard">
-    {% for p in podium %}
-        <div class = "name"> {{ p[0] }}</div>
-        <div class = "points"> {{ p[1] }}</div>
-    {% endfor %}   
-</div>
-<nav><h2><a href="/logout">Kirjaudu ulos</a></h2></nav>
+{% endblock %}
 
-{% else %}
 
-<p>{{ message }}</p><br>
-<div class="login">
-    <form action="/login" method="post">
-        <div><label for="username">Tunnus:</label></div>
-        <div><input type="text" id = "username" name="username" placeholder="Syötä tunnus" required></div>
-        <div><label for="password">Salasana:</label></div>
-        <div><input type="password" id = "password" name="password" placeholder="Syötä salasana" required></div>
-        <div><input id=button type="submit" value="Kirjaudu"></div>
-    </form>
-</div>
-<nav><h2><a href="/register"> rekisteröidy</a></h2></nav>
-
-{% endif %}
-
-<body>
