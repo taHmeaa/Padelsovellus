@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<title>Paistilan Padel - Rekisteröidy</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/static/style.css">
-
+{% extends "layout.html" %}
+{% block title %}Rekisteröointi{% endblock %}
+{% block registercontent %}
 <div class="header">
     <h1>Paistilan Padel</h1>
 </div>
@@ -15,6 +13,8 @@
         <div><input type="password" id = "password" name="password1" minlength="4" maxlength="16" required></div>
         <div><label for="password">Salasana uudestaan:</label></div>
         <div><input type="password" id = "password" name="password2" required></div>
-        <div><input type="submit" value="Luo tunnus"></div>
+        <div><input id="button" type="submit" value="Luo tunnus"></div>
     </form>
 </div>
+
+{% endblock %}

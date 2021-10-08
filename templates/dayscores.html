@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<title>Paistilan Padel</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/static/style.css">
+{% extends "layout.html" %}
+{% block title %}Rekisteröinti{% endblock %}
+{% block content %}
 
 <div><h2>Päivän tulokset</h2></div>
-<br>
 <div class="dayscores">
     {% for d in day_podium %}
         <div class = "name">{{ d[0] }} </div>
         <div class = "points">{{ d[1] }} </div>
     {% endfor%}
 </div>
-<br>
-<div><nav><h2><a href="/">Palaa etusivulle</a></h2></nav></div>
+{% endblock %}

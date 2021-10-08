@@ -27,6 +27,7 @@ def playerapp():
     if request.method == "POST":
         users.csrf()
         add_player = request.form["add_player"]
+        #tarkastetaan, että syöte on oikea
         if 3 < len(add_player) < 9:
             if users.players(add_player):
                 return redirect("/playerapp")
@@ -37,7 +38,15 @@ def playerapp():
     players = gamebracket.get_players()
     return render_template("players.html", players = players)
 
-            
+@app.route("/playerdel", methods=["GET", "POST"])
+def playerdel():
+    if request.method == "POST":
+        users.csrf()
+        if users.is_admin():
+            del_player = request.form["del_player"]
+
+    pass
+
 @app.route("/stats", methods=["GET", "POST"])
 def stats():
     if request.method == "POST":
