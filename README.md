@@ -19,17 +19,13 @@ Mahdollisia lisäominaisuuksia:
 ****************************************************************************************
 Ohjelman tila:
 
--Kirjautuminen onnistuu ja salasanat tallennetaan kryptattuna.
+-Ulkoasu vielä kesken ja sitä on suunniteltu lähinnä kännykällä käytettäväksi, mm. rekisteröintisivusto/tunnus tulee väärään paikkaan ja muutamat input-nappulan teksti ei mahdu toimintoon.
 
--Pelaajavalinta onnistuu ja joukkueet arvotaan.
+-Seuraavaksi pitää päivittää admin-oikeudet pelaajien poistamiselle.
 
--Vasta yksi pelikierros järjestelmässä ja loput lisätään, kun saadaan tilastointi toimimaan.
+-Taulukkoja pitäisi keksiä 1-2 lisää. Tällä hetkellä suunnitelmissa turnausjäjestely.
 
--Tilastointi toimii, mutta vain itsemääritetyllä pelaajan nimellä. Ei vielä löydetty ratkaisua, kuinka arvonan jälkeen saisi html-kaavalla yksilöityä tuloksen.
-
--Ulkoasu erittäin kesken.
-
--Kausitilaston tiedon purku järkevään muotoon kesken.
+-Tilastoihin tulossa sarakkeet voitetuista/hävityistä peleistä sekä eristä. Tällä hetkellä vain erävoitot näkyvät. 
 
 ****************************************************************************************
 Tuolta löytyy äppi:
