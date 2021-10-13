@@ -1,0 +1,13 @@
+{% extends "seasonstats.html" %}
+{% block statisticcontent %}
+<div class = "h2"> Pelit {{ games[0][0].strftime("%m-%d") }}</div>
+{% for g in games %}
+    <div class="gameboard">
+        <div class = "team"> {{ g[1] }} / {{ g[2] }}</div>
+        <div class = "team"> {{ g[4] }} / {{ g[5] }} </div>
+        <div class = "points"> {{ g[3] }}</div>
+        <div class = "points"> {{ g[6] }}</div>
+    </div>
+{% endfor %} 
+{% endblock %}
+

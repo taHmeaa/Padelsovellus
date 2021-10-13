@@ -1,16 +1,13 @@
 {% extends "layout.html" %}
 {% block title %}Tilastot{% endblock %}
 {% block content %}
-
-<div><h2>KAUSITILASTO</h2></div>
-<div><h2>PÄIVÄTILASTOT (tulossa)</h2></div>
-
-
-<div class="podiumboard">
-    {% for p in podium %}
-        <div class = "name"> {{ p[0] }}</div>
-        <div class = "points"> {{ p[1] }}</div>
-    {% endfor %}   
+<div class="navbanner1">
+    <a class ="navlinks1" href="/stats">Kausi</a>
+    <a class ="navlinks2" href="/allgames">Pelit</a>
+    <a class ="navlinks3" href="/stats">Pelaaja</a>
+    <a class ="navlinks4" href="/stats">Turnaus</a>
 </div>
+
+{% block statisticcontent %}{% endblock %}
 
 {% endblock %}

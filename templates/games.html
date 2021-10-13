@@ -3,7 +3,7 @@
 {% block content %}
 <form action="/stats" method="POST">
 {% for r in range(rounds) %}
-    <div><h2>Kierros {{ r+1 }}</h2></div>
+    <div class="h2">Kierros {{ r+1 }}</div>
     {% for P in playerchart %}
     <div class="scoreboard">  
         <div class="team">{{ P[0] }} / {{ P[1] }}</div>

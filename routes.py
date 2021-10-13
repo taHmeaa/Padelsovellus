@@ -58,7 +58,13 @@ def stats():
         day_podium = statistic.gameday_stats()
         return render_template("dayscores.html", day_podium = day_podium)                   
     podium =statistic.season_stats()
-    return render_template("seasonstats.html", podium = podium)  
+    return render_template("scorestats.html", podium = podium)  
+
+@app.route("/allgames", methods=["GET", "POST"])
+def allgames():
+    games = statistic.getgames()
+    return render_template("gamestats.html", games = games)
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -70,7 +76,7 @@ def login():
         if users.login(username, password):
             return redirect("/")
         else:
-            return render_template("index.html", message="Kirjautuminen ei onnistunut")
+            return render_template("login.html", message="Väärä tunnus tai salasana")
 
 @app.route("/logout")
 def logout():
@@ -91,4 +97,4 @@ def register():
         if users.register(username, password1):
             return redirect("/")
         else:
-            return render_template("register.html", message="Rekisteröinti ei onnistunut")
+            return render_template("register.html", message="Tunnus jo käytössä")

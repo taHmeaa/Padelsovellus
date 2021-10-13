@@ -63,3 +63,10 @@ def season_stats():
     result = db.session.execute(sql)
     podium = result.fetchall()
     return podium
+
+def getgames():
+    sql = """SELECT game_time, p1 , p2, p1score, p3, p4, p3score FROM games 
+            WHERE game_time >= '2021-10-08' and game_time < '2021-10-09' ORDER BY game_time DESC;"""
+    result = db.session.execute(sql)
+    games = result.fetchall()
+    return games

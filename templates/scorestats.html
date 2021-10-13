@@ -1,0 +1,12 @@
+{% extends "seasonstats.html" %}
+{% block statisticcontent %}
+<div class="h2">KAUSITILASTO</div>
+<div class="podiumboard">
+    {% for p in podium %}
+        <div class = "name"> {{ p[0] }}</div>
+        <div class = "points"> {{ p[1] }}</div>
+    {% endfor %}   
+</div>
+
+{% endblock %}
+
