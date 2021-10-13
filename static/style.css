@@ -12,16 +12,17 @@ body {
     color: black;
     font-weight: bold;
     text-align: center;
-    padding: 0.5em;
-    font-size: 1.2em;
+    padding: 1.5em;
+    font-size: 1.5em;
     border-radius: .5em;
     margin: 12px;
 }
 
-h2 {
+.h2 {
     text-align: center;
     font-size: 1em;
     font-weight: bold;
+    margin: 2em 0em 0em 0em;
 }
 
 .login {
@@ -49,6 +50,16 @@ h2 {
     grid-template-columns: repeat(2, 1fr);
     font-family: 'Quicksand', sans-serif;
 }
+.gameboard{
+    background: rgb(255, 96, 96, 0.562);
+    margin: 12px;
+    padding: 1em 1em 1em 1em;
+    border-radius: .5em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-family: 'Quicksand', sans-serif;
+
+}
 
 .podiumboard {
     background: rgb(255, 96, 96, 0.562);
@@ -61,7 +72,7 @@ h2 {
 } 
 .points{
     text-align: center;
-    margin: 1em;
+    margin: auto;
     font-size: 1em;
     font-weight: bold;
     padding: .5em;
@@ -92,6 +103,15 @@ h2 {
     font-family: 'Quicksand', sans-serif;
     margin: 12px;
 }
+.navbanner1{
+    font-family: 'Quicksand', sans-serif;
+    margin: 12px;
+    text-align: center;
+    background: beige;
+    border-radius: .5em;
+    text-decoration: none;
+    color: black;
+}
 
 .navlinks1{
     border-radius: .5em;
@@ -99,6 +119,8 @@ h2 {
     background: bisque;
     padding: .5em;
     margin: .5em .5em .5em 0em;
+    text-decoration: none;
+    color: black;
 }
 .navlinks2{
     border-radius: .5em;
@@ -106,13 +128,18 @@ h2 {
     background: bisque;
     padding: .5em;
     margin: .5em;
+    text-decoration: none;
+    color: black;
 }
+
 .navlinks3{
     border-radius: .5em;
     text-align: center;
     background: bisque;
     padding: .5em;
     margin: .5em;
+    text-decoration: none;
+    color: black;
 }
 .navlinks4{
     border-radius: .5em;
@@ -120,6 +147,18 @@ h2 {
     background: bisque;
     padding: .5em;
     margin: .5em 0em .5em .5em;
+    text-decoration: none;
+    color: black;
+}
+.registerlink{
+    border-radius: .5em;
+    text-align: center;
+    background: bisque;
+    padding: .5em;
+    margin: .5em;
+    font-size: .9em;
+    text-decoration: none;
+    color: black;
 }
 
 .score {
@@ -132,7 +171,7 @@ h2 {
     text-align: center;
     background-color: bisque;
     border-radius: .5em;
-    margin: auto;
+    margin: auto auto .5em auto;
     padding: 1em;
     font-size: 0.8em;
     width: 9.5em;
