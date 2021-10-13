@@ -1,14 +1,16 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/static/style.css">
+{% extends "layout.html" %}
+{% block title %}Kirjautuminen{% endblock %}
+{% block registercontent %}
 
 
-<div>
+<div class="login">
     <form action="/login" method="post">
-        <label for="username">Tunnus:</label>
-        <input type="text" name="username">
-        <label for="password">Salasana:</label>
-        <input type="password" name="password">
-        <input id=button type="submit" value="Kirjaudu">
+        <div><label for="username">Tunnus:</label></div>
+        <div><input type="text" id = "username" name="username" placeholder="Syötä tunnus" required></div>
+        <div><label for="password">Salasana:</label></div>
+        <div><input type="password" id = "password" name="password" placeholder="Syötä salasana" required></div>
+        <div><input id="button" type="submit" value="Kirjaudu"></div>
     </form>
 </div>
-Jos sinulla ei ole tunnusta, voit luoda uuden tunnuksen <a href="/register">tästä</a>
+<div class="h2">{{ message }}</div>
+{% endblock %}

@@ -5,33 +5,28 @@
 
 <body>
     <div class="header">
-        <h1>Paistilan Padel</h1>
-    </div>
-    <div class="navbanner">
-        <a class ="navlinks1" href="/">Etusivu</a>
-        <a class ="navlinks2" href="/stats">Tilastot</a>
-        <a class ="navlinks3" href="/playerapp">Pelaajat</a>
-        <a class ="navlinks4" href="/register">Tunnus</a>
+        Paistilan Padel
     </div>
 {% if session.user_id %}
 
+<div class="navbanner">
+    <a class ="navlinks1" href="/">Etusivu</a>
+    <a class ="navlinks2" href="/stats">Tilastot</a>
+    <a class ="navlinks3" href="/playerapp">Pelaajat</a>
+    <a class ="navlinks4" href="/logout">Logout</a>
+</div>
 {% block content %}{% endblock %}
 
-
-    <nav><h2><a href="/logout">Lopeta ja kirjaudu ulos</a></h2></nav>
 {% else %}
-
-<p>{{ message }}</p>
-<div class="login">
-    <form action="/login" method="post">
-        <div><label for="username">Tunnus:</label></div>
-        <div><input type="text" id = "username" name="username" placeholder="Syötä tunnus" required></div>
-        <div><label for="password">Salasana:</label></div>
-        <div><input type="password" id = "password" name="password" placeholder="Syötä salasana" required></div>
-        <div><input id="button" type="submit" value="Kirjaudu"></div>
-    </form>
+<div class="navbanner">
+    <a class ="navlinks1" href="/">Etusivu</a>
+    <a class ="navlinks2" href="/stats">Tilastot</a>
+    <a class ="navlinks3" href="/playerapp">Pelaajat</a>
+    <a class ="navlinks4" href="/login">Login</a>
 </div>
-
+<div class="navbanner1">
+    <a class ="registerlink" href="/register">Rekisteröidy</a>
+</div>
 {% block registercontent %}{% endblock %}
 
 {% endif %}

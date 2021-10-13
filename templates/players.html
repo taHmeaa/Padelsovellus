@@ -2,15 +2,15 @@
 {% block title %}Pelaajat{% endblock %}
 {% block content %}
 
-<div>{{ name_error }}</div>
+<div class="h2">{{ name_error }}</div>
 <form action="/playerapp" method="POST" class="playeradd" onsubmit="checkplayer(this)">
-    <div>Lisää pelaaja: <input id ="username" type="text" name="add_player" minlength="4" maxlength="10" pattern="[A-Za-z]+" placeholder="vain kirjaimia" required>
+    <div>Lisää pelaaja: <input id ="username" type="text" name="add_player" minlength="4" maxlength="10" pattern="[A-Öa-ö]+" placeholder="vain kirjaimia" required>
         <input id ="button" type="submit" value="Lisää">
     </div>
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 <form action="/playerdel" method="POST" class="playeradd" onsubmit="checkplayer(this)">
-    <div>Poista: (tulossa) <input id ="username" type="text" name="del_player" minlength="4" maxlength="10" pattern="[A-Za-z]+" placeholder="vain kirjaimia" required>
+    <div>Poista: (tulossa) <input id ="username" type="text" name="del_player" minlength="4" maxlength="10" pattern="[A-Öa-ö]+" placeholder="vain kirjaimia" required>
         <input id ="button" type="submit" value="Poista">
     </div>
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
