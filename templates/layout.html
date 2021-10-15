@@ -10,7 +10,7 @@
 {% if session.user_id %}
 
 <div class="navbanner">
-    <a class ="navlinks1" href="/">Etusivu</a>
+    <a class ="navlinks1" href="/">Pelit</a>
     <a class ="navlinks2" href="/stats">Tilastot</a>
     <a class ="navlinks3" href="/playerapp">Pelaajat</a>
     <a class ="navlinks4" href="/logout">Logout</a>
@@ -19,14 +19,12 @@
 
 {% else %}
 <div class="navbanner">
-    <a class ="navlinks1" href="/">Etusivu</a>
+    <a class ="navlinks1" href="/">Pelit</a>
     <a class ="navlinks2" href="/stats">Tilastot</a>
     <a class ="navlinks3" href="/playerapp">Pelaajat</a>
     <a class ="navlinks4" href="/login">Login</a>
 </div>
-<div class="navbanner1">
-    <a class ="registerlink" href="/register">Rekisteröidy</a>
-</div>
+
 {% block registercontent %}{% endblock %}
 
 {% endif %}

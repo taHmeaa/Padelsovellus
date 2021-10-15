@@ -7,7 +7,8 @@
 <form action="/games" method="POST" onsubmit="check(this)">
     <div class="playerboard">
         {% for p in players %}
-        <label class="playerbox">{{ p[0] }}<input type="checkbox" id="player" name="player" value="{{ p[0] }}"></label>
+        <input class ="checkbox" type="checkbox" id="player{{ loop.index }}" name="player" value="{{ p[0] }}">
+        <label for ="player{{ loop.index }}" class="playerbox">{{ p[0] }}</label> 
         {% endfor %} 
     </div>
     <div class="rounds">
@@ -25,7 +26,7 @@
 </form>
 
 <script src="{{url_for('static', filename='jschecks.js')}}"></script>
-</body>
+
 
 
 {% endblock %}

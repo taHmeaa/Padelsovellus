@@ -36,7 +36,7 @@ def get_brackets(p:list, t:bool):
 
         
 def get_players():
-    sql = "SELECT player FROM Players ORDER BY player;"
+    sql = "SELECT player FROM Players WHERE visible = TRUE ORDER BY player;"
     result = db.session.execute(sql)
     players = result.fetchall()
     return players

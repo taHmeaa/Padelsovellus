@@ -2,9 +2,15 @@
 {% block statisticcontent %}
 <div class="h2">KAUSITILASTO</div>
 <div class="podiumboard">
+    <div></div>
+    <div class = "h2">Voitot</div>
+    <div class = "h2">Häviöt</div>
+
     {% for p in podium %}
         <div class = "name"> {{ p[0] }}</div>
         <div class = "points"> {{ p[1] }}</div>
+        <div class = "points"> {{ p[2] }}</div>
+
     {% endfor %}   
 </div>
 

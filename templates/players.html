@@ -9,20 +9,18 @@
     </div>
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
-<form action="/playerdel" method="POST" class="playeradd" onsubmit="checkplayer(this)">
-    <div>Poista: (tulossa) <input id ="username" type="text" name="del_player" minlength="4" maxlength="10" pattern="[A-Öa-ö]+" placeholder="vain kirjaimia" required>
-        <input id ="button" type="submit" value="Poista">
-    </div>
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-</form>
-
-
 <script src="{{url_for('static', filename='jschecks.js')}}"></script>
 
-<div class="playerboard">
-    {% for p in players %}
-    <label class="playerbox">{{ p[0] }}<input type="checkbox" id="player" name="player" value="{{ p[0] }}"></label>
-    {% endfor %} 
-</div>
-
+<form action="/playerdel" method="POST">
+    <div class="playerboard">
+        {% for p in players %}
+        <input class ="checkbox" type="checkbox" id="player{{ loop.index }}" name="del_player" value="{{ p[0] }}">
+        <label for ="player{{ loop.index }}" class="playerbox">{{ p[0] }}</label> 
+        {% endfor %}
+    </div>
+    <div class="playeradd">
+        <input id ="button" type="submit" value="Poista">
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    </div>
+</form>
 {% endblock %}

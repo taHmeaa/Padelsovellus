@@ -15,7 +15,6 @@ function check(form) {
     }
 }
 
-
 function checkplayer(form) {
     if (4 < form.player.value.length < 9) {
         return true

@@ -58,16 +58,15 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     font-family: 'Quicksand', sans-serif;
-
 }
 
 .podiumboard {
     background: rgb(255, 96, 96, 0.562);
     margin: 12px;
-    padding: 1em 1em 1em 1em;
+    padding: 0em 1em 1em 1em;
     border-radius: .5em;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     font-family: 'Quicksand', sans-serif;
 } 
 .points{
@@ -113,6 +112,9 @@ body {
     color: black;
 }
 
+.navlinks1:hover, .navlinks2:hover, .navlinks3:hover, .navlinks4:hover{
+    background: rgb(247, 221, 137);
+}
 .navlinks1{
     border-radius: .5em;
     text-align: center;
@@ -122,6 +124,7 @@ body {
     text-decoration: none;
     color: black;
 }
+
 .navlinks2{
     border-radius: .5em;
     text-align: center;
@@ -141,6 +144,7 @@ body {
     text-decoration: none;
     color: black;
 }
+
 .navlinks4{
     border-radius: .5em;
     text-align: center;
@@ -150,6 +154,7 @@ body {
     text-decoration: none;
     color: black;
 }
+
 .registerlink{
     border-radius: .5em;
     text-align: center;
@@ -159,6 +164,9 @@ body {
     font-size: .9em;
     text-decoration: none;
     color: black;
+}
+.registerlink:hover{
+    background: rgb(238, 209, 114);
 }
 
 .score {
@@ -174,7 +182,6 @@ body {
     margin: auto auto .5em auto;
     padding: 1em;
     font-size: 0.8em;
-    width: 9.5em;
 
 }
 
@@ -245,6 +252,14 @@ form #button:hover{
     font-family: 'Quicksand', sans-serif;
     text-align: center;
 }
+.checkbox{
+    position: absolute;
+    left: -9999px;
+}
+
+.checkbox:checked + .playerbox{
+    background-color: #c1e398d4;
+}
 
 .playerbox{
     border-radius: .5em;
@@ -254,6 +269,10 @@ form #button:hover{
     margin: 0.7em 1em;
     font-size: .9em;
 }
+
+.playerbox:hover{
+    background: rgb(247, 221, 137);
+ }
 
 #hide{
     font-size: xx-small;
@@ -282,3 +301,17 @@ form #password{
     padding: 1.5em 2em;
     border-radius: .5em
  }
+
+.calendar {
+    border-radius: .5em;
+    padding: .5em 0em .5em .5em;
+    font-size: 0.8em;
+    text-align: center;
+}
+.calendar-table{
+    border-radius: .5em;
+    padding: .5em 0em .5em .5em;
+    font-size: 0.8em;
+    text-align: center;
+}
+    

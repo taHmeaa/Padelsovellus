@@ -13,10 +13,7 @@ def login(username, password):
         if check_password_hash(user.password, password):
             session["user_id"] = user.id
             session["csrf_token"] = secrets.token_hex(16)
-            if user[2] == True:
-                is_admin(True)
-            else:
-                is_admin(False)
+            session["is_admin"] = user.is_admin
             return True
         else:
             return False
@@ -25,18 +22,11 @@ def csrf():
         if session["csrf_token"] != request.form["csrf_token"]:
             abort(403)
 
-def is_admin(b:bool):
-    t = b
-    return t    
-
-def players(add_player):
-    try:
-        sql = """INSERT INTO players (player, scorewon, scoreloss)
-                VALUES (:player, 0, 0);"""
-        db.session.execute(sql, {"player":add_player})
-        db.session.commit()
-    except:
-        return False
+def is_admin():
+    if session["is_admin"]:
+        return True 
+    else:
+        return False   
 
 def logout():
     del session["user_id"]

@@ -1,7 +1,8 @@
+from datetime import date
 from operator import methodcaller
 from app import app
 from flask import render_template, request, redirect
-import users, statistic, gamebracket
+import users, statistic, gamebracket, playerconfig
 
 
 @app.route("/")
@@ -24,18 +25,18 @@ def games():
 
 @app.route("/playerapp", methods=["GET", "POST"])
 def playerapp():
+    players = gamebracket.get_players()
     if request.method == "POST":
         users.csrf()
         add_player = request.form["add_player"]
         #tarkastetaan, että syöte on oikea
         if 3 < len(add_player) < 9:
-            if users.players(add_player):
+            if playerconfig.addplayers(add_player):
                 return redirect("/playerapp")
             else:
-                return redirect("/playerapp")
+                return render_template("players.html", name_error = "Nimi jo käytössä tai jäädytetty", players = players)
         else:
             return redirect("/playerapp") 
-    players = gamebracket.get_players()
     return render_template("players.html", players = players)
 
 @app.route("/playerdel", methods=["GET", "POST"])
@@ -44,8 +45,10 @@ def playerdel():
         users.csrf()
         if users.is_admin():
             del_player = request.form["del_player"]
-
-    pass
+            playerconfig.delplayers(del_player)
+            return redirect("/playerapp")
+        else:
+            return redirect("/")
 
 @app.route("/stats", methods=["GET", "POST"])
 def stats():
@@ -60,9 +63,16 @@ def stats():
     podium =statistic.season_stats()
     return render_template("scorestats.html", podium = podium)  
 
+#tästä haetaan peli historia tilastoihin
 @app.route("/allgames", methods=["GET", "POST"])
 def allgames():
-    games = statistic.getgames()
+    if request.method == "POST":
+        users.csrf()
+        date = request.form["gameday"]
+        games = statistic.getgames(date)
+        return render_template("gamestats.html", games = games)
+    last_gameday = "2021-10-08"
+    games = statistic.getgames(last_gameday)
     return render_template("gamestats.html", games = games)
 
 

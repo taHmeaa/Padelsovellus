@@ -3,6 +3,7 @@ from sqlalchemy.orm import query
 from werkzeug.wrappers import request
 from db import db
 from flask import session
+from datetime import time
 
 
 def results(game_player:list,game_result:list):
@@ -59,14 +60,20 @@ def gameday_stats():
     return gameday_podium
 
 def season_stats():
-    sql = "SELECT player, scorewon FROM players ORDER BY scorewon DESC;"
+    sql = "SELECT player, scorewon, scoreloss FROM players ORDER BY scorewon DESC;"
     result = db.session.execute(sql)
     podium = result.fetchall()
     return podium
 
-def getgames():
+def getgames(date):
     sql = """SELECT game_time, p1 , p2, p1score, p3, p4, p3score FROM games 
-            WHERE game_time >= '2021-10-08' and game_time < '2021-10-09' ORDER BY game_time DESC;"""
-    result = db.session.execute(sql)
+            WHERE game_time::date=:gameday ORDER BY game_time DESC;"""
+    result = db.session.execute(sql, {"gameday":date,})
     games = result.fetchall()
     return games
+
+def prevgameday():
+    sql = "SELECT game_time FROM games ORDER BY game_time DESC;"
+    prev = db.session.execute(sql)
+    gameday = prev.fetchone()
+    return gameday

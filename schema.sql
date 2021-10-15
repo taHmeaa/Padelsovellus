@@ -9,7 +9,8 @@ CREATE TABLE players (
     id SERIAL PRIMARY KEY,
     player TEXT UNIQUE,
     scorewon INTEGER,
-    scoreloss INTEGER
+    scoreloss INTEGER,
+    visible BOOLEAN
 );
 
 CREATE TABLE games (
