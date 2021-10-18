@@ -1,18 +1,16 @@
 {% extends "seasonstats.html" %}
 {% block statisticcontent %}
+<div class="h2">{{ message }}</div>
 <form class = "calendar" action="/allgames" method="POST">
-      
-    <label class = "calendar-table" for="gameday">:</label>
-    <input type="date" id="gameday" name="gameday"
-       value="2021-10-8"
-       min="2021-01-01" max="2022-12-31">
+    <input class="calendarbox" type="date" id="gameday" name="gameday" value="2021-10-18" min="2021-01-01" max="2022-12-31">
+    <label class = "calendar-table" for="gameday"></label>
     <div class="scorebutton">
-        <input type="submit" value="Etsi">
+        <input class= "find" type="submit" value="Etsi">
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </div>
 </form>
 
-<div class = "h2"> Pelit {{ games[0][0].strftime("%m-%d") }}</div>
+<div class = "h2"> Pelit {{ games[0][0].strftime("%d-%m-%Y") }}</div>
 {% for g in games %}
     <div class="gameboard">
         <div class = "team"> {{ g[1] }} / {{ g[2] }}</div>

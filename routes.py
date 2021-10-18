@@ -1,4 +1,4 @@
-from datetime import date
+import datetime
 from operator import methodcaller
 from app import app
 from flask import render_template, request, redirect
@@ -69,9 +69,14 @@ def allgames():
     if request.method == "POST":
         users.csrf()
         date = request.form["gameday"]
-        games = statistic.getgames(date)
-        return render_template("gamestats.html", games = games)
-    last_gameday = "2021-10-08"
+        if statistic.getgames(date):
+            games = statistic.getgames(date)
+            return render_template("gamestats.html", games = games)
+        else:
+            last_gameday = statistic.prevgameday()
+            games = statistic.getgames(last_gameday)
+            return render_template("gamestats.html", games = games, message = "Ei pelejä kyseisenä päivänä")
+    last_gameday = statistic.prevgameday()
     games = statistic.getgames(last_gameday)
     return render_template("gamestats.html", games = games)
 

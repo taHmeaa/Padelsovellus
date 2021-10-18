@@ -104,7 +104,7 @@ body {
 }
 .navbanner1{
     font-family: 'Quicksand', sans-serif;
-    margin: 12px;
+    margin: 1em 12px 3em 12px;
     text-align: center;
     background: beige;
     border-radius: .5em;
@@ -314,4 +314,15 @@ form #password{
     font-size: 0.8em;
     text-align: center;
 }
-    
+
+
+.calendarbox {
+    font-size: 1.2em;
+    padding: 0.5em 1em .5em 1em;
+    border-radius: 0.5em;
+}
+.find{
+    font-size: 1em;
+    padding: 0.2em 1em .2em 1em;
+    border-radius: .5em;
+}
