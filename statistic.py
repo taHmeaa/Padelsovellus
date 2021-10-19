@@ -6,16 +6,17 @@ from flask import session
 import datetime
 
 
-def results(game_player:list,game_result:list):
+def results(game_player:list,game_result:list, t_id:int):
     #lisätään peli games-taulukkoon
-    sql = """INSERT INTO games (p1, p1score, p2, p2score, p3, p3score, p4, p4score, game_time ) 
-               VALUES (:p1, :p1score, :p2, :p2score, :p3, :p3score, :p4, :p4score, NOW());"""
+    sql = """INSERT INTO games (p1, p1score, p2, p2score, p3, p3score, p4, p4score, tournament_id, game_time ) 
+               VALUES (:p1, :p1score, :p2, :p2score, :p3, :p3score, :p4, :p4score, :tournament_id, NOW());"""
     s = 0 #tuloksen kerroin
     for i in range(0, len(game_player), 4): #4 stepeissä   
         db.session.execute(sql, {"p1": game_player[0+i], "p1score": int(game_result[0+s]),
                                 "p2": game_player[1+i], "p2score": int(game_result[0+s]),
                                 "p3": game_player[2+i], "p3score": int(game_result[1+s]),
-                                "p4": game_player[3+i], "p4score": int(game_result[1+s])})
+                                "p4": game_player[3+i], "p4score": int(game_result[1+s]),
+                                "tournament_id": t_id})
         s += 2
         db.session.commit()
     #lisätään päivän tulokset daystats-tauluun ja nollataan taulu. Tähän joku fiksumpi ratkaisu...
@@ -90,6 +91,20 @@ def season_stats():
     podium = result.fetchall()
     return podium
 
+def tournament(name):
+    try:
+        sql = "INSERT INTO tournaments (tournament) VALUES (:name);"
+        db.session.execute(sql, {"name":name,})
+        db.session.commit()
+    except:
+        return False
+    return True
+    
+def tournament_id(name):
+    sql = "SELECT id FROM tournaments WHERE tournament =:name;"
+    id = db.session.execute(sql, {"name":name,})
+    return id
+
 def getgames(date):
     try:
         sql = """SELECT game_time, p1 , p2, p1score, p3, p4, p3score FROM games 
@@ -101,8 +116,11 @@ def getgames(date):
     return games
 
 def prevgameday():
-    sql = "SELECT game_time FROM games ORDER BY game_time DESC;"
-    prev = db.session.execute(sql)
-    gameday = prev.fetchone()
-    day = gameday[0].strftime("%Y-%m-%d")
+    try:
+        sql = "SELECT game_time FROM games ORDER BY game_time DESC;"
+        prev = db.session.execute(sql)
+        gameday = prev.fetchone()
+        day = gameday[0].strftime("%Y-%m-%d")
+    except:
+        return False
     return day

@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
-{% block title %}Rekisteröinti{% endblock %}
+{% block title %}Päivän tulokset{% endblock %}
 {% block content %}
 
-<div><h2>Päivän tulokset</h2></div>
+<div class="h2">Päivän tulokset</div>
 <div class="dayscores">
     {% for d in day_podium %}
         <div class = "name">{{ d[0] }} </div>

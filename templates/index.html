@@ -2,32 +2,12 @@
 {% block title %}Etusivu{% endblock %}
 {% block content %}
 
-<div class="h2">Valitse päivän pelaajat (vähintään 4)</div>
+<div class="navbanner1">
+    <a class ="navlinks1" href="/">Talvikausi</a>
+    <a class ="navlinks2" href="/americano">Americano</a>
+</div>
 
-<form action="/games" method="POST" onsubmit="return check(this)">
-    <div class="playerboard">
-        {% for p in players %}
-        <input class ="checkbox" type="checkbox" id="player{{ loop.index }}" name="player" value="{{ p[0] }}">
-        <label for ="player{{ loop.index }}" class="playerbox">{{ p[0] }}</label> 
-        {% endfor %} 
-    </div>
-    <div class="rounds">
-        Kierrosten lukumäärä<select id="roundwheel" name="roundvalue">
-                            <option value="1" selected> 1
-                            <option value="2"> 2
-                            <option value="3"> 3       
-                            </select>    
-    </div>
-    <div class="scorebutton">
-        <input id= "gamestart" type="submit" value="Aloita pelit">
-        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    </div>
-         
-</form>
-
-<script src="{{url_for('static', filename='jschecks.js')}}"></script>
-
-
+{% block indexcontent %}{% endblock %}
 
 {% endblock %}
 
