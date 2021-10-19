@@ -39,17 +39,42 @@ def playerstats(players:list, points:list):
                 WHERE player = :player """
     #kaaviossa vaseamman puolen joukkueen pisteet
     l = 0 
-    for i in range(0, len(players), 4) :
+    for i in range(0, len(players), 4):
         db.session.execute(sql, {"w":int(points[l]), "l":int(points[1+l]), "player":players[i],})
         db.session.execute(sql, {"w":int(points[l]), "l":int(points[1+l]), "player":players[i+1],})
         db.session.commit()
         l += 2
     #kaavion oikean puolen joukkueen pisteet
     r = 0 
-    for i in range(2, len(players), 4) :
+    for i in range(2, len(players), 4):
         db.session.execute(sql, {"w":int(points[r+1]), "l":int(points[r]), "player":players[i],})
         db.session.execute(sql, {"w":int(points[r+1]), "l":int(points[r]), "player":players[i+1],})
         db.session.commit()
+        r += 2
+    #Pelivoitot / Pelihäviöt
+    sql2 = """ UPDATE players SET gamewon = gamewon + :gw, gameloss = gameloss +:gl
+            Where player = :player """
+    l = 0
+    for i in range(0, len(players), 4):
+        if int(points[l]) > int(points[1+l]):
+            db.session.execute(sql2, {"gw":1, "gl":0, "player": players[i],})
+            db.session.execute(sql2, {"gw":1, "gl":0, "player": players[i+1],})
+            db.session.commit()
+        if int(points[l]) < int(points[1+l]):
+            db.session.execute(sql2, {"gw":0, "gl":1, "player": players[i],})
+            db.session.execute(sql2, {"gw":0, "gl":1,"player": players[i+1],})
+            db.session.commit()
+        l +=2
+    r = 0 
+    for i in range(2, len(players), 4):
+        if int(points[r]) > int(points[r+1]):
+            db.session.execute(sql2, {"gw":0, "gl":1, "player": players[i],})
+            db.session.execute(sql2, {"gw":0, "gl":1, "player": players[i+1],})
+            db.session.commit()
+        if int(points[r]) < int(points[r+1]):
+            db.session.execute(sql2, {"gw":1, "gl":0, "player": players[i],})
+            db.session.execute(sql2, {"gw":1, "gl":0,"player": players[i+1],})
+            db.session.commit()
         r += 2
     return
 
@@ -60,7 +85,7 @@ def gameday_stats():
     return gameday_podium
 
 def season_stats():
-    sql = "SELECT player, scorewon, scoreloss FROM players ORDER BY scorewon DESC;"
+    sql = "SELECT player, scorewon, scoreloss, gamewon, gameloss FROM players ORDER BY scorewon DESC;"
     result = db.session.execute(sql)
     podium = result.fetchall()
     return podium

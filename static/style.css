@@ -22,9 +22,14 @@ body {
     text-align: center;
     font-size: 1em;
     font-weight: bold;
-    margin: 2em 0em 0em 0em;
+    margin: 1em 0em 0em 0em;
 }
-
+.h2stats{
+    text-align: center;
+    font-size: .8em;
+    font-weight: bold;
+    margin: 1em 0em 0em 0em;
+}
 .login {
     margin: 12px;
     padding: .5em;
@@ -63,10 +68,9 @@ body {
 .podiumboard {
     background: rgb(255, 96, 96, 0.562);
     margin: 12px;
-    padding: 0em 1em 1em 1em;
     border-radius: .5em;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     font-family: 'Quicksand', sans-serif;
 } 
 .points{
@@ -104,7 +108,7 @@ body {
 }
 .navbanner1{
     font-family: 'Quicksand', sans-serif;
-    margin: 1em 12px 3em 12px;
+    margin: 1em 12px 2em 12px;
     text-align: center;
     background: beige;
     border-radius: .5em;
@@ -193,14 +197,12 @@ body {
 }
 
 .scorebutton{
-    margin: .5em;
     padding: .5em;
     font-size: 1.5em;
     border-radius: .5em;
     text-align: center;
-
-
 }
+
 form #scorebutton{
     margin: .5em;
     padding: .5em;
@@ -227,6 +229,9 @@ form #gamestart{
     border-radius: .5em;
     text-align: center;
 
+}
+form #gamestart:hover{
+    background-color: seashell;
 }
 
 form #button {

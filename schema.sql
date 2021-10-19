@@ -10,6 +10,8 @@ CREATE TABLE players (
     player TEXT UNIQUE,
     scorewon INTEGER,
     scoreloss INTEGER,
+    gamewon INTEGER,
+    gameloss INTEGER,
     visible BOOLEAN
 );
 

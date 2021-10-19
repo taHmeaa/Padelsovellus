@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="h2">{{ name_error }}</div>
-<form action="/playerapp" method="POST" class="playeradd" onsubmit="checkplayer(this)">
+<form action="/playerapp" method="POST" class="playeradd" onsubmit="return checkplayer(this)">
     <div>Lisää pelaaja: <input id ="username" type="text" name="add_player" minlength="4" maxlength="10" pattern="[A-Öa-ö]+" placeholder="vain kirjaimia" required>
         <input id ="button" type="submit" value="Lisää">
     </div>
