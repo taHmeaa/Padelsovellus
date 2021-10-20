@@ -1,0 +1,23 @@
+{% extends "seasonstats.html" %}
+{% block statisticcontent %}
+<div class="h2">AMERICANO TULOKSET</div>
+<form action="/americanostats" method="POST">
+    <select id="scorewheel" name="tournament_id">
+        {% for n in names %}
+        <option value="{{ n[0] }}"> {{ n[1] }}
+        {% endfor %}
+    </select>
+    <input id="tournament_id" type="submit" value="Valitse">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+</form>
+{% if day_podium %}
+<div class="h2">Turnauksen tulokset</div>
+<div class="dayscores">
+    {% for d in day_podium %}
+        <div class = "name">{{ d[0] }} </div>
+        <div class = "points">{{ d[1] }} </div>
+    {% endfor%}
+</div>
+{% endif %}
+
+{% endblock %}

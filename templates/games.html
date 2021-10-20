@@ -1,6 +1,6 @@
-{% extends "layout.html" %}
+{% extends "index.html" %}
 {% block title %}Pelit{% endblock %}
-{% block content %}
+{% block indexcontent %}
 <form action="/stats" method="POST">
 {% for r in range(rounds) %}
     <div class="h2">Kierros {{ r+1 }}</div>

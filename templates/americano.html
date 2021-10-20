@@ -1,17 +1,20 @@
-{% extends "layout.html" %}
+{% extends "index.html" %}
 {% block title %}Americano{% endblock %}
-{% block content %}
-<div class="h2">Americano</div>
-<div class="scoreboard">
-    <div class="h2">Kenttä 1</div>
-    <div class="h2">Kenttä 2</div>
-</div>
+{% block indexcontent %}
+
+<div class="h2-americano">{{ tournament_name }}</div>
+
 <form action="/stats" method="POST">
     {% for P in playerchart %}
-    <div class="scoreboard">  
-        <div class="team">{{ P[0] }} / {{ P[1] }}</div>
-        <div class="team">{{ P[2] }} / {{ P[3] }}</div>     
-        <div class="score">
+        {% if (loop.index + 1) % 2 == 0 %}
+            <div class="h2">Kenttä 1</div>
+        {% else %}
+            <div class="h2">Kenttä 2</div>
+        {% endif %}
+    <div class="scoreboard-amercano">  
+        <div class="team-americano">{{ P[0] }} / {{ P[1] }}</div>
+        <div class="team-americano">{{ P[2] }} / {{ P[3] }}</div>     
+        <div class="score-americano">
             <input type="hidden" id="hide" name="gamedata" value= "{{ P[0] }}">
             <input type="hidden" id="hide" name="gamedata" value= "{{ P[1] }}">
             <select id="scorewheel" name="gamescore">
@@ -25,7 +28,7 @@
                 <option value="7"> 7
             </select>
         </div>
-        <div class="score">
+        <div class="score-americano">
             <input type="hidden" id="hide" name="gamedata" value= "{{ P[2] }}">
             <input type="hidden" id="hide" name="gamedata" value= "{{ P[3] }}">
             <select id="scorewheel" name="gamescore">

@@ -4,7 +4,7 @@
 <div class="h2">Valitse päivän pelaajat (vähintään 8)</div>
 
 <form action="/americano" method="POST" onsubmit="return americanocheck(this)">
-    <div>Keksi nimi:<input id ="username" type="text" name="tournament_name" minlength="4" maxlength="10" pattern="[A-Öa-ö]+" placeholder="vain kirjaimia" required>
+    <div>Keksi nimi:<input id ="username" type="text" name="tournament_name" minlength="4" maxlength="10" pattern="[A-Öa-ö]+" placeholder="vain kirjaimia" required></div>
     <div class="playerboard">
         {% for p in players %}
         <input class ="checkbox" type="checkbox" id="player{{ loop.index }}" name="player" value="{{ p[0] }}">

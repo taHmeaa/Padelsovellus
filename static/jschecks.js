@@ -6,11 +6,11 @@ function check(form) {
             checked++;
         }
     }
-    if (checked > 3) {
+    if ( checked > 3 && checked < 7) {
         return true;
     }   
     else {
-        alert("Valitse vähintään 4 pelaajaa");
+        alert("Valitse vähintään 4-6 pelaajaa");
         return false;
     }
 }

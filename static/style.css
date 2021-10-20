@@ -24,6 +24,13 @@ body {
     font-weight: bold;
     margin: 1em 0em 0em 0em;
 }
+.h2-americano {
+    text-align: center;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 1em 0em 0em 0em;
+}
+
 .h2stats{
     text-align: center;
     font-size: .8em;
@@ -46,6 +53,7 @@ body {
     font-family: 'Quicksand', sans-serif;
 
 }
+
 .scoreboard {
     background: rgb(255, 96, 96, 0.562);
     margin: 12px;
@@ -55,6 +63,17 @@ body {
     grid-template-columns: repeat(2, 1fr);
     font-family: 'Quicksand', sans-serif;
 }
+
+.scoreboard-amercano {
+    background: rgb(255, 96, 96, 0.562);
+    margin: 12px;
+    padding: 1em;
+    border-radius: .5em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-family: 'Quicksand', sans-serif;
+}
+
 .gameboard{
     background: rgb(255, 96, 96, 0.562);
     margin: 12px;
@@ -92,12 +111,12 @@ body {
     background: bisque;
     border-radius: .5em;
 }
+
 .playeradd{
     border-radius: .5em;
     padding: .5em 0em .5em .5em;
     font-size: 0.8em;
     text-align: center;
-
 }
 
 .navbanner{
@@ -106,6 +125,7 @@ body {
     font-family: 'Quicksand', sans-serif;
     margin: 12px;
 }
+
 .navbanner1{
     font-family: 'Quicksand', sans-serif;
     margin: 1em 12px 2em 12px;
@@ -116,9 +136,6 @@ body {
     color: black;
 }
 
-.navlinks1:hover, .navlinks2:hover, .navlinks3:hover, .navlinks4:hover{
-    background: rgb(247, 221, 137);
-}
 .navlinks1{
     border-radius: .5em;
     text-align: center;
@@ -158,7 +175,12 @@ body {
     text-decoration: none;
     color: black;
 }
-
+.navlinks1:focus, .navlinks2:focus, .navlinks3:focus, .navlinks4:focus{
+    background: rgb(247, 221, 137);
+}
+.navlinks1:hover, .navlinks2:hover, .navlinks3:hover, .navlinks4:hover{
+    background: rgb(247, 221, 137);
+}
 .registerlink{
     border-radius: .5em;
     text-align: center;
@@ -177,6 +199,10 @@ body {
     margin: .5em;
     text-align: center;
 }
+.score-americano {
+    margin: .5em;
+    text-align: center;
+}
 
 .team {
     font-weight: bold;
@@ -186,7 +212,16 @@ body {
     margin: auto auto .5em auto;
     padding: 1em;
     font-size: 0.8em;
+}
 
+.team-americano {
+    font-weight: bold;
+    text-align: center;
+    background-color: bisque;
+    border-radius: .5em;
+    margin: auto auto .5em auto;
+    padding: 1em;
+    font-size: 0.8em;
 }
 
 .rounds{
@@ -274,7 +309,9 @@ form #button:hover{
     margin: 0.7em 1em;
     font-size: .9em;
 }
-
+.checkbox:focus + label{
+    background: rgb(247, 221, 137);
+}
 .playerbox:hover{
     background: rgb(247, 221, 137);
  }
@@ -297,8 +334,6 @@ form #password{
     padding: .3em;
     border-radius: .5em;
     margin: .5em;
-
-
 }
 
 .content {
@@ -319,8 +354,6 @@ form #password{
     font-size: 0.8em;
     text-align: center;
 }
-
-
 .calendarbox {
     font-size: 1.2em;
     padding: 0.5em 1em .5em 1em;
