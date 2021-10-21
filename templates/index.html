@@ -2,10 +2,18 @@
 {% block title %}Pelit{% endblock %}
 {% block uppernav %}
 <div class="navbanner">
-    <a class ="navlinks1-select" href="/">Pelit</a>
+    <a class ="navlinks1-select" href="/gameindex">Pelit</a>
     <a class ="navlinks2" href="/stats">Tilastot</a>
     <a class ="navlinks3" href="/playerapp">Pelaajat</a>
     <a class ="navlinks4" href="/logout">Logout</a>
+</div>
+{% endblock %}
+{% block navstart %}
+<div class="navbanner">
+    <a class ="navlinks1" href="/gameindex">Pelit</a>
+    <a class ="navlinks2" href="/stats">Tilastot</a>
+    <a class ="navlinks3" href="/playerapp">Pelaajat</a>
+    <a class ="navlinks4" href="/login">Login</a>
 </div>
 {% endblock %}
 {% block content %}

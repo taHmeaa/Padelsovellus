@@ -7,6 +7,10 @@ import users, statistic, gamebracket, playerconfig
 
 @app.route("/")
 def index():
+    return redirect("/login")
+
+@app.route("/gameindex")
+def gameindex():
     players = gamebracket.get_players()
     return render_template("indexseason.html", players = players)
 
@@ -21,7 +25,7 @@ def games():
             playerchart = gamebracket.get_brackets(players, True)
             return render_template("games.html", playerchart=playerchart, rounds=rounds)
         else:
-            return redirect("/")
+            return redirect("/gameindex")
 
 @app.route("/americano", methods=["GET", "POST"])
 def americano():
@@ -68,7 +72,8 @@ def playerdel():
             playerconfig.delplayers(del_player)
             return redirect("/playerapp")
         else:
-            return redirect("/")
+            players = gamebracket.get_players()
+            return render_template("players.html", players =players, error = "Vain ADMIN voi poistaa pelaajan")
 
 @app.route("/stats", methods=["GET", "POST"])
 def stats():
@@ -112,8 +117,8 @@ def allgames():
             return render_template("gamestats.html", games = games)
         else:
             last_gameday = statistic.prevgameday()
-            games = statistic.getgames(last_gameday)
-            return render_template("gamestats.html", games = games, message = "Ei pelejä kyseisenä päivänä")
+            #games = statistic.getgames(last_gameday)
+            return render_template("gamestats.html", message = "Ei pelejä kyseisenä päivänä")
     #tämä generoi alkuun edellisen pelipäivän pelit esille
     if statistic.prevgameday():
         last_gameday = statistic.prevgameday()
@@ -130,7 +135,7 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
         if users.login(username, password):
-            return redirect("/")
+            return redirect("/gameindex")
         else:
             return render_template("login.html", message="Väärä tunnus tai salasana")
 
@@ -151,6 +156,6 @@ def register():
         if password1 != password2:
             return render_template("register.html", message="Salasanat eroavat")
         if users.register(username, password1):
-            return redirect("/")
+            return redirect("/gameindex")
         else:
             return render_template("register.html", message="Tunnus jo käytössä")

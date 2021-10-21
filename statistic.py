@@ -35,7 +35,7 @@ def results(game_player:list,game_result:list, t_id:int):
     return 
 
 def playerstats(players:list, points:list):
-    #päivitetään pelaajan tilastot
+    #päivitetään pelaajan kausitilastot
     sql = """ UPDATE players SET scorewon = scorewon + :w, scoreloss = scoreloss + :l 
                 WHERE player = :player """
     #kaaviossa vaseamman puolen joukkueen pisteet
@@ -130,7 +130,7 @@ def tournament_id(name):
     return id
 
 def get_tournaments():
-    sql = "SELECT * FROM tournaments;"
+    sql = "SELECT * FROM tournaments WHERE id !=1;"
     result = db.session.execute(sql)
     tournaments = result.fetchall()
     return tournaments

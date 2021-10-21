@@ -1,13 +1,12 @@
 {% extends "seasonstats.html" %}
 {% block navcontent %}
 <div class="navbanner1">
-    <a class ="navlinks1" href="/stats">Kausi</a>
+    <a class ="navlinks1" href="/stats">Talvikausi</a>
     <a class ="navlinks4" href="/americanostats">Americano</a>
     <a class ="navlinks2-select" href="/allgames">Pelit</a>
 </div>
 {% endblock %}
 {% block statisticcontent %}
-<div class="h2">{{ message }}</div>
 <form class = "calendar" action="/allgames" method="POST">
     <input class="calendarbox" type="date" id="gameday" name="gameday" value="2021-10-18" min="2021-01-01" max="2022-12-31">
     <label class = "calendar-table" for="gameday"></label>
@@ -16,8 +15,11 @@
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </div>
 </form>
+
+<div class="h2">{{ message }}</div>
+
 {% if games %} 
-    <div class = "h2"> Pelit {{ games[0][0].strftime("%d-%m-%Y") }}</div>
+    <div class = "h2-americano-points"> Pelit {{ games[0][0].strftime("%d-%m-%Y") }}</div>
     {% for g in games %}
         <div class="gameboard">
             <div class = "team"> {{ g[1] }} / {{ g[2] }}</div>

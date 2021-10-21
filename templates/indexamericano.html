@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 {% block navcontent %}
 <div class="navbanner1">
-    <a class ="navlinks2" href="/">Talvikausi</a>
+    <a class ="navlinks2" href="/gameindex">Talvikausi</a>
     <a class ="navlinks3-select" href="/americano">Americano</a>
 </div>
 {% endblock %}
@@ -9,7 +9,8 @@
 
 <div class="h2">Keksi turnaukselle nimi</div>
 <form class = "tournament-name" action="/americano" method="POST" onsubmit="return americanocheck(this)">
-    <div><input id ="username" type="text" name="tournament_name" minlength="4" maxlength="16" pattern="[A-Öa-ö0-9]+" placeholder="kirjaimia tai numeroita" required></div>
+    <div><input id ="username" type="text" name="tournament_name" minlength="4" maxlength="16"
+         pattern="[A-Öa-ö0-9]+" placeholder="kirjaimia tai numeroita" required></div>
     <div class="h2">Valitse päivän pelaajat (vähintään 8)</div>
     <div class="playerboard">
         {% for p in players %}
@@ -18,7 +19,7 @@
         {% endfor %} 
     </div>
     <div class="scorebutton">
-        <input id= "button" type="submit" value="Aloita pelit">
+        <input id= "gamestart" type="submit" value="Aloita pelit">
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </div>
          
