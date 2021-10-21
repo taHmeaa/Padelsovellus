@@ -7,7 +7,7 @@ body {
 }
 
 .header {
-    background: rgb(151, 211, 138);
+    background: rgb(143, 189, 133);
     color: black;
     font-weight: bold;
     text-align: center;
@@ -31,7 +31,7 @@ body {
     font-weight: bold;
     margin: 12px;
     padding: .5em;
-    background: #e3e39e;
+    background: rgb(244, 207, 165);
     border-radius: .5em;
 }
 
@@ -41,7 +41,7 @@ body {
     font-weight: bold;
     margin: 12px;
     padding: .5em;
-    background: #e3e39e;
+    background: rgb(244, 207, 165);
     border-radius: .5em;
 }
 
@@ -51,7 +51,7 @@ body {
     font-weight: bold;
     margin: 12px 7em;
     padding: .5em;
-    background: #e3e39e;
+    background: rgb(244, 207, 165);
     border-radius: .5em;
 
 }
@@ -60,7 +60,7 @@ body {
     text-align: center;
     font-size: .8em;
     font-weight: bold;
-    padding: .2em;
+    padding: .5em;
 }
 
 .login {
@@ -179,7 +179,7 @@ body {
 .navlinks1-select{
     border-radius: .5em;
     text-align: center;
-    background: rgb(247, 221, 137);
+    background: rgb(239, 195, 146);
     padding: .5em;
     margin: .5em .5em .5em 0em;
     text-decoration: none;
@@ -209,7 +209,7 @@ body {
 .navlinks2-select, .navlinks3-select{
     border-radius: .5em;
     text-align: center;
-    background: rgb(247, 221, 137);
+    background: rgb(239, 195, 146);
     padding: .5em;
     margin: .5em;
     text-decoration: none;
@@ -229,7 +229,7 @@ body {
 .navlinks4-select{
     border-radius: .5em;
     text-align: center;
-    background: rgb(247, 221, 137);
+    background: rgb(239, 195, 146);
     padding: .5em;
     margin: .5em 0em .5em .5em;
     text-decoration: none;
@@ -254,7 +254,7 @@ body {
     color: black;
 }
 .registerlink:hover{
-    background: rgb(238, 209, 114);
+    background: rgb(247, 221, 137);
 }
 
 .score {
@@ -335,14 +335,14 @@ form #button {
     padding: 4px;
     border-radius: .5em;
     text-align: center;
-    width: 6em;
-    background: tan;
+    width: 8em;
+    background: rgb(255, 228, 197);
     margin: 0.2em .5em .5em 0em;
 }
 
 form #button:hover{
-    background: rgb(138, 119, 94);
-    color: white;
+    background: rgb(247, 221, 137);
+    color: black;
 }
 
 .playerboard{
