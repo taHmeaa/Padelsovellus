@@ -92,24 +92,27 @@ def season_stats():
     return podium
 
 def americano_stats(t_id):
-    sql = """SELECT p1, p1score, p2, p2score, p3, p3score, p4, p4score FROM games 
-            WHERE tournament_id =:t_id;"""
-    result = db.session.execute(sql, {"t_id":t_id,})
-    games = result.fetchall()
-    #lisätään päivän tulokset daystats-tauluun ja nollataan taulu. Tähän joku fiksumpi ratkaisu...
-    db.session.execute("DROP TABLE daystats;")
-    db.session.execute("""CREATE TABLE daystats (id SERIAL PRIMARY KEY, player TEXT,
-                         score INTEGER, game_time TIMESTAMP);""")
-    db.session.commit()
+    try:
+        sql = """SELECT p1, p1score, p2, p2score, p3, p3score, p4, p4score, tournament FROM games, tournaments 
+            WHERE tournament_id = tournaments.id AND tournaments.id=:t_id"""
+        result = db.session.execute(sql, {"t_id":t_id,})
+        games = result.fetchall()
+        #lisätään päivän tulokset daystats-tauluun ja nollataan taulu. Tähän joku fiksumpi ratkaisu...
+        db.session.execute("DROP TABLE daystats;")
+        db.session.execute("""CREATE TABLE daystats (id SERIAL PRIMARY KEY, player TEXT,
+                            score INTEGER, game_time TIMESTAMP);""")
+        db.session.commit()
 
-    sql2 = "INSERT INTO daystats (player, score, game_time) VALUES (:player, :score, NOW())"
-    for g in games:
-        db.session.execute(sql2, {"player":g[0], "score":g[1]})
-        db.session.execute(sql2, {"player":g[2], "score":g[3]})
-        db.session.execute(sql2, {"player":g[4], "score":g[5]})
-        db.session.execute(sql2, {"player":g[6], "score":g[7]})
-        db.session.commit()        
-    return
+        sql2 = "INSERT INTO daystats (player, score, game_time) VALUES (:player, :score, NOW())"
+        for g in games:
+            db.session.execute(sql2, {"player":g[0], "score":g[1]})
+            db.session.execute(sql2, {"player":g[2], "score":g[3]})
+            db.session.execute(sql2, {"player":g[4], "score":g[5]})
+            db.session.execute(sql2, {"player":g[6], "score":g[7]})
+            db.session.commit()        
+    except:
+        return False
+    return games
 
 def tournament(name):
     try:

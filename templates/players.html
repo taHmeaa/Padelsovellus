@@ -1,5 +1,13 @@
 {% extends "layout.html" %}
 {% block title %}Pelaajat{% endblock %}
+{% block uppernav %}
+<div class="navbanner">
+    <a class ="navlinks1" href="/">Pelit</a>
+    <a class ="navlinks2" href="/stats">Tilastot</a>
+    <a class ="navlinks3-select" href="/playerapp">Pelaajat</a>
+    <a class ="navlinks4" href="/logout">Logout</a>
+</div>
+{% endblock %}
 {% block content %}
 
 <div class="h2">{{ name_error }}</div>

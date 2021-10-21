@@ -78,6 +78,8 @@ def stats():
         game_players = request.form.getlist("gamedata")
         tournament_id = request.form["tournament_id"]
         statistic.results(game_players, game_results, int(tournament_id))
+        #Koska käytetään samaa stats turnauksille ja kaudelle
+        #tällä estetään kausitilastojen muokkaus.
         if int(tournament_id) == 1:
             statistic.playerstats(game_players, game_results)
         day_podium = statistic.gameday_stats()
@@ -91,9 +93,12 @@ def americanostats():
     if request.method == "POST":
         users.csrf()
         tournament_id = request.form["tournament_id"]
-        statistic.americano_stats(tournament_id)
-        day_podium = statistic.gameday_stats()
-        return render_template("americanostats.html", day_podium = day_podium, names = tournament_name)
+        if statistic.americano_stats(tournament_id):
+            games = statistic.americano_stats(tournament_id)
+            day_podium = statistic.gameday_stats()
+            return render_template("americanostats.html", day_podium = day_podium, names = tournament_name, name = games[0][8], games = games)
+        else:
+            return render_template("americanostats.html",names = tournament_name, error = "Ei pelejä, valitse toinen turnaus")
     return render_template("americanostats.html", names = tournament_name)                   
 
 #tästä haetaan pelihistoria tilastoihin

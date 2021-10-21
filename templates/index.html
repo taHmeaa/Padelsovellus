@@ -1,12 +1,16 @@
 {% extends "layout.html" %}
 {% block title %}Pelit{% endblock %}
+{% block uppernav %}
+<div class="navbanner">
+    <a class ="navlinks1-select" href="/">Pelit</a>
+    <a class ="navlinks2" href="/stats">Tilastot</a>
+    <a class ="navlinks3" href="/playerapp">Pelaajat</a>
+    <a class ="navlinks4" href="/logout">Logout</a>
+</div>
+{% endblock %}
 {% block content %}
 
-<div class="navbanner1">
-    <a class ="navlinks2" href="/">Talvikausi</a>
-    <a class ="navlinks3" href="/americano">Americano</a>
-</div>
-
+{% block navcontent %}{% endblock %}
 {% block indexcontent %}{% endblock %}
 
 {% endblock %}

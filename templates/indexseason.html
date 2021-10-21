@@ -1,7 +1,13 @@
 {% extends "index.html" %}
+{% block navcontent %}
+<div class="navbanner1">
+    <a class ="navlinks2-select" href="/">Talvikausi</a>
+    <a class ="navlinks3" href="/americano">Americano</a>
+</div>
+{% endblock %}
 {% block indexcontent %}
 
-<div class="h2">Valitse päivän pelaajat (vähintään 4)</div>
+<div class="h2">Valitse päivän pelaajat (4-6 henkilöä)</div>
 
 <form action="/games" method="POST" onsubmit="return check(this)">
     <div class="playerboard">

@@ -1,23 +1,43 @@
 {% extends "seasonstats.html" %}
+{% block navcontent %}
+<div class="navbanner1">
+    <a class ="navlinks1" href="/stats">Kausi</a>
+    <a class ="navlinks4-select" href="/americanostats">Americano</a>
+    <a class ="navlinks2" href="/allgames">Pelit</a>
+</div>
+{% endblock %}
 {% block statisticcontent %}
-<div class="h2">AMERICANO TULOKSET</div>
-<form action="/americanostats" method="POST">
+<div class="h2-americano">AMERICANO TULOKSET</div>
+<form class="playeradd" action="/americanostats" method="POST">
     <select id="scorewheel" name="tournament_id">
         {% for n in names %}
         <option value="{{ n[0] }}"> {{ n[1] }}
         {% endfor %}
     </select>
-    <input id="tournament_id" type="submit" value="Valitse">
+    <input id="button" type="submit" value="Valitse">
     <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
+<div class="h2">{{ error }}</div>
+
 {% if day_podium %}
-<div class="h2">Turnauksen tulokset</div>
+<div class="h2-americano-points">{{ name }}</div>
 <div class="dayscores">
     {% for d in day_podium %}
         <div class = "name">{{ d[0] }} </div>
         <div class = "points">{{ d[1] }} </div>
     {% endfor%}
 </div>
+{% if games %} 
+    <div class = "h2-americano-points"> Pelit </div>
+    {% for g in games %}
+        <div class="gameboard">
+            <div class = "team"> {{ g[0] }} / {{ g[2] }}</div>
+            <div class = "team"> {{ g[4] }} / {{ g[6] }} </div>
+            <div class = "points"> {{ g[1] }}</div>
+            <div class = "points"> {{ g[5] }}</div>
+        </div>
+    {% endfor %} 
+{% endif %}
 {% endif %}
 
 {% endblock %}
