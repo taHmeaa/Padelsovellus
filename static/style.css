@@ -112,7 +112,7 @@ body {
 
 .podiumboard {
     background: rgb(255, 96, 96, 0.562);
-    margin: 3.5em 12px;
+    margin: 12px;
     border-radius: .5em;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -325,10 +325,10 @@ form #gamestart{
     font-size: 1em;
     border-radius: .5em;
     text-align: center;
-
+    background: rgb(233, 233, 237)
 }
 form #gamestart:hover{
-    background-color: seashell;
+    background-color: rgb(213, 213, 217);
 }
 
 form #button {
@@ -388,7 +388,7 @@ form #username{
     padding: .3em;
     border-radius: .5em;
     margin: 0.5em;
-    width: 10em;
+    width: 11em;
 }
 
 form #password{
@@ -425,4 +425,11 @@ form #password{
     font-size: 1em;
     padding: 0.2em 1em .2em 1em;
     border-radius: .5em;
+}
+
+::-moz-placeholder {
+    text-align: center;
+}  
+::-webkit-input-placeholder {
+    text-align: center;
 }

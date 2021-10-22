@@ -34,7 +34,7 @@ function americanocheck(form) {
 
 
 function checkplayer(form) {
-    if (3 < form.player.value.length < 9) {
+    if (3 < form.player.value.length && form.player.value.length < 11) {
         return true
     }
     
