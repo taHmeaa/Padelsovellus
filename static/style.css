@@ -62,7 +62,10 @@ body {
     font-weight: bold;
     padding: .5em;
 }
+p {
+    font-size: x-small;
 
+}
 .login {
     margin: 12px;
     padding: .5em;
