@@ -49,7 +49,7 @@ body {
     text-align: center;
     font-size: 1.2em;
     font-weight: bold;
-    margin: 12px 7em;
+    margin: 12px 3em;
     padding: .5em;
     background: rgb(244, 207, 165);
     border-radius: .5em;
@@ -325,7 +325,8 @@ form #gamestart{
     font-size: 1em;
     border-radius: .5em;
     text-align: center;
-    background: rgb(233, 233, 237)
+    background: rgb(233, 233, 237);
+    color: black
 }
 form #gamestart:hover{
     background-color: rgb(213, 213, 217);
@@ -338,11 +339,13 @@ form #button {
     width: 8em;
     background: rgb(255, 228, 197);
     margin: 0.2em .5em .5em 0em;
+    color: black
+
 }
 
 form #button:hover{
     background: rgb(247, 221, 137);
-    color: black;
+
 }
 
 .playerboard{
