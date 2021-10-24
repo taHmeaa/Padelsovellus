@@ -298,6 +298,8 @@ body {
     font-size: 1.5em;
     border-radius: .5em;
     text-align: center;
+    color: black
+
 }
 
 form #scorebutton{
@@ -306,18 +308,21 @@ form #scorebutton{
     font-size: .7em;
     border-radius: .5em;
     text-align: center;
+    color: black
 
 }   
 
 form #scorewheel {
     font-size: 1.2em;
     padding: .2em;
+    color: black
 
 }
 form #roundwheel{
     font-size: 1em;
     padding: .2em;
     margin-left: 1em;
+    color: black
 
 }
 form #gamestart{
@@ -423,6 +428,7 @@ form #password{
     font-size: 1.2em;
     padding: 0.5em 1em .5em 1em;
     border-radius: 0.5em;
+    color: black;
 }
 .find{
     font-size: 1em;
