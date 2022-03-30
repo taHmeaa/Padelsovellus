@@ -1,4 +1,4 @@
-from re import S
+#from re import S
 from sqlalchemy.orm import query
 from werkzeug.wrappers import request
 from db import db
@@ -6,17 +6,17 @@ from flask import session
 import datetime
 
 
-def results(game_player:list,game_result:list, t_id:int):
+def results(game_player:list,game_result:list, t_id:int, s_round:int):
     #lisätään peli games-taulukkoon
-    sql = """INSERT INTO games (p1, p1score, p2, p2score, p3, p3score, p4, p4score, tournament_id, game_time ) 
-               VALUES (:p1, :p1score, :p2, :p2score, :p3, :p3score, :p4, :p4score, :tournament_id, NOW());"""
+    sql = """INSERT INTO games (p1, p1score, p2, p2score, p3, p3score, p4, p4score, tournament_id, game_time, seasonround) 
+               VALUES (:p1, :p1score, :p2, :p2score, :p3, :p3score, :p4, :p4score, :tournament_id, NOW(), :seasonround);"""
     s = 0 #tuloksen kerroin
     for i in range(0, len(game_player), 4): #4 stepeissä   
         db.session.execute(sql, {"p1": game_player[0+i], "p1score": int(game_result[0+s]),
                                 "p2": game_player[1+i], "p2score": int(game_result[0+s]),
                                 "p3": game_player[2+i], "p3score": int(game_result[1+s]),
                                 "p4": game_player[3+i], "p4score": int(game_result[1+s]),
-                                "tournament_id": t_id})
+                                "tournament_id": t_id, "seasonround": s_round})
         s += 2
         db.session.commit()
     #lisätään päivän tulokset daystats-tauluun ja nollataan taulu. Tähän joku fiksumpi ratkaisu...
@@ -86,7 +86,7 @@ def gameday_stats():
     return gameday_podium
 
 def season_stats():
-    sql = "SELECT player, scorewon, scoreloss, gamewon, gameloss FROM players ORDER BY scorewon DESC;"
+    sql = "SELECT player, scorewon, scoreloss, gamewon, gameloss FROM players ORDER BY gamewon DESC;"
     result = db.session.execute(sql)
     podium = result.fetchall()
     return podium
@@ -130,27 +130,62 @@ def tournament_id(name):
     return id
 
 def get_tournaments():
-    sql = "SELECT * FROM tournaments WHERE id !=1;"
+    sql = "SELECT * FROM tournaments WHERE id !=1;" #1 on talvikausi 2021-22, pitäisi muuttaa toimivammaksi
     result = db.session.execute(sql)
     tournaments = result.fetchall()
     return tournaments
 
-def getgames(date):
+def get_rounds():
+    sql = "SELECT DISTINCT seasonround FROM games WHERE tournament_id = 1 ORDER BY seasonround DESC;" #1 on talvikausi 2021-22, pitäisi muuttaa toimivammaksi
+    result = db.session.execute(sql)
+    rounds = result.fetchall()
+    return rounds
+
+def get_roundstats(round):
     try:
-        sql = """SELECT game_time, p1 , p2, p1score, p3, p4, p3score FROM games 
-                WHERE game_time::date=:gameday ORDER BY game_time DESC;"""
-        result = db.session.execute(sql, {"gameday":date,})
+        sql = """SELECT p1, p1score, p2, p2score, p3, p3score, p4, p4score, seasonround, game_time FROM games 
+            WHERE seasonround=:round"""
+        result = db.session.execute(sql, {"round":round,})
         games = result.fetchall()
+        #lisätään päivän tulokset daystats-tauluun ja nollataan taulu. Tähän joku fiksumpi ratkaisu...
+        db.session.execute("DROP TABLE daystats;")
+        db.session.execute("""CREATE TABLE daystats (id SERIAL PRIMARY KEY, player TEXT,
+                            score INTEGER, game_time TIMESTAMP);""")
+        db.session.commit()
+
+        sql2 = "INSERT INTO daystats (player, score, game_time) VALUES (:player, :score, NOW())"
+        for g in games:
+            db.session.execute(sql2, {"player":g[0], "score":g[1]})
+            db.session.execute(sql2, {"player":g[2], "score":g[3]})
+            db.session.execute(sql2, {"player":g[4], "score":g[5]})
+            db.session.execute(sql2, {"player":g[6], "score":g[7]})
+            db.session.commit()        
     except:
         return False
     return games
+    #try:
+    #    sql = """SELECT game_time, p1 , p2, p1score, p3, p4, p3score FROM games 
+    #            WHERE game_time::date=:gameday ORDER BY game_time DESC;"""
+    #    result = db.session.execute(sql, {"gameday":date,})
+    #    games = result.fetchall()
+    #except:
+    #    return False
+    #return games
 
 def prevgameday():
     try:
-        sql = "SELECT game_time FROM games ORDER BY game_time DESC;"
+        sql = "SELECT seasonround FROM games WHERE tournament_id = 1 ORDER BY seasonround DESC;"
         prev = db.session.execute(sql)
-        gameday = prev.fetchone()
-        day = gameday[0].strftime("%Y-%m-%d")
+        round = prev.fetchone()
+        lastround = round[0]
     except:
         return False
-    return day
+    return lastround
+    #try:
+    #    sql = "SELECT game_time FROM games ORDER BY game_time DESC;"
+    #    prev = db.session.execute(sql)
+    #    gameday = prev.fetchone()
+    #    day = gameday[0].strftime("%Y-%m-%d")
+    #except:
+    #    return False
+    #return day

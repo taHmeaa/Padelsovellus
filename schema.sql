@@ -25,8 +25,9 @@ CREATE TABLE games (
     p3score INTEGER,
     p4 TEXT,
     p4score INTEGER,
-    tournament_id INT REFERENCES tournaments, 
-    game_time TIMESTAMP  
+    tournament_id INT REFERENCES tournaments,
+    game_time TIMESTAMP,
+    seasonround INTEGER 
 );
 
 CREATE TABLE daystats (
@@ -38,5 +39,5 @@ CREATE TABLE daystats (
 
 CREATE TABLE tournaments (
     id SERIAL PRIMARY KEY,
-    tournament TEXT UNIQUE
+    tournament TEXT UNIQUE,
 );

@@ -19,6 +19,7 @@
 {% block content %}
 
 <div class="h2">{{ name_error }}</div>
+
 <form action="/playerapp" method="POST" class="playeradd" onsubmit="return checkplayer(this)">
     <div>Lisää pelaaja: <input id ="username" type="text" name="add_player" minlength="4" maxlength="10" pattern="[A-Öa-ö]+" placeholder="vain kirjaimia" required>
         <input id ="button" type="submit" value="Lisää">
@@ -27,7 +28,7 @@
 </form>
 <script src="{{url_for('static', filename='jschecks.js')}}"></script>
 
-<form action="/playerdel" method="POST">
+<form action="/playerdel" method="POST" onsubmit="return checkselection(this)">
     <div class="playerboard">
         {% for p in players %}
         <input class ="checkbox" type="checkbox" id="player{{ loop.index }}" name="del_player" value="{{ p[0] }}">
@@ -39,6 +40,7 @@
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </div>
 </form>
+<script src="{{url_for('static', filename='jschecks.js')}}"></script>
 <div class="h2">{{ error }}</div>
 
 {% endblock %}

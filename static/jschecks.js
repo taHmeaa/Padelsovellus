@@ -43,3 +43,20 @@ function checkplayer(form) {
         return false;
     }
 }
+
+function checkselection(form) {
+    var checked = 0;
+    var chks = document.getElementsByTagName("input");
+    for (var i = 0; i < chks.length; i++) {
+        if (chks[i].checked) {
+            checked++;
+        }
+    }
+    if (checked == 1) {
+        return true;
+    }   
+    else {
+        alert("Valitse poistettava pelaajaa");
+        return false;
+    }
+}

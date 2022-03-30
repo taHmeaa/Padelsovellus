@@ -3,31 +3,43 @@
 <div class="navbanner1">
     <a class ="navlinks1" href="/stats">Talvikausi</a>
     <a class ="navlinks4" href="/americanostats">Americano</a>
-    <a class ="navlinks2-select" href="/allgames">Pelit</a>
+    <a class ="navlinks2-select" href="/allgames">Pelihistoria</a>
 </div>
 {% endblock %}
 {% block statisticcontent %}
-<form class = "calendar" action="/allgames" method="POST">
-    <input class="calendarbox" type="date" id="gameday" name="gameday" value="2021-10-18" min="2021-01-01" max="2022-12-31">
-    <label class = "calendar-table" for="gameday"></label>
-    <div class="scorebutton">
-        <input class= "find" type="submit" value="Etsi">
-        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    </div>
+<div class="h2-americano">Talvikausi historia</div>
+<form class="playeradd" action="/allgames" method="POST">
+    <select id="scorewheel" name="round">
+        {% for r in rounds %}
+        <option value="{{ r[0] }}"> Kierros {{ r[0] }}
+        {% endfor %}
+    </select>
+    <input id="button" type="submit" value="Valitse">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
-
 <div class="h2">{{ message }}</div>
 
+{% if day_podium %}
+<div class="h2-americano-points">{{ date }}</div>
+<div class="h2-americano-points">Kierros {{ name }}</div>
+<div class="dayscores">
+    {% for d in day_podium %}
+        <div class = "name">{{ d[0] }} </div>
+        <div class = "points">{{ d[1] }} </div>
+    {% endfor%}
+</div>
+
 {% if games %} 
-    <div class = "h2-americano-points"> Pelit {{ games[0][0].strftime("%d-%m-%Y") }}</div>
+    <div class = "h2-americano-points"> Pelit </div>
     {% for g in games %}
         <div class="gameboard">
-            <div class = "team"> {{ g[1] }} / {{ g[2] }}</div>
-            <div class = "team"> {{ g[4] }} / {{ g[5] }} </div>
-            <div class = "points"> {{ g[3] }}</div>
-            <div class = "points"> {{ g[6] }}</div>
+            <div class = "team"> {{ g[0] }} / {{ g[2] }}</div>
+            <div class = "team"> {{ g[4] }} / {{ g[6] }} </div>
+            <div class = "points"> {{ g[1] }}</div>
+            <div class = "points"> {{ g[5] }}</div>
         </div>
     {% endfor %} 
+{% endif %}
 {% endif %}
 {% endblock %}
 

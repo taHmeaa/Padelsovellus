@@ -1,5 +1,6 @@
 import datetime
 from operator import methodcaller
+#from unicodedata import name
 from app import app
 from flask import render_template, request, redirect
 import users, statistic, gamebracket, playerconfig
@@ -23,7 +24,9 @@ def games():
         #tarkastetaan, että pelaajavalinnat ovat oikein 
         if len(players) > 3:
             playerchart = gamebracket.get_brackets(players, True)
-            return render_template("games.html", playerchart=playerchart, rounds=rounds)
+            #tähän fault handling, jos ei ole pelejä tulee error.
+            nextround = statistic.prevgameday() + 1  #+1 luodaan seuraava kierros
+            return render_template("games.html", playerchart=playerchart, rounds=rounds, sr = nextround)
         else:
             return redirect("/gameindex")
 
@@ -67,10 +70,12 @@ def playerapp():
 def playerdel():
     if request.method == "POST":
         users.csrf()
-        if users.is_admin():
-            del_player = request.form["del_player"]
-            playerconfig.delplayers(del_player)
-            return redirect("/playerapp")
+        del_player = request.form.getlist("del_player")
+        if len(del_player) == 1:
+            if users.is_admin():
+                del_player = request.form["del_player"]
+                playerconfig.delplayers(del_player)
+                return redirect("/playerapp")
         else:
             players = gamebracket.get_players()
             return render_template("players.html", players =players, error = "Vain ADMIN voi poistaa pelaajan")
@@ -82,13 +87,15 @@ def stats():
         game_results = request.form.getlist("gamescore")
         game_players = request.form.getlist("gamedata")
         tournament_id = request.form["tournament_id"]
-        statistic.results(game_players, game_results, int(tournament_id))
+        seasonround = request.form["seasonround"]
+        statistic.results(game_players, game_results, int(tournament_id), int(seasonround))
         #Koska käytetään samaa stats turnauksille ja kaudelle
         #tällä estetään kausitilastojen muokkaus.
         if int(tournament_id) == 1:
             statistic.playerstats(game_players, game_results)
         day_podium = statistic.gameday_stats()
-        return render_template("dayscores.html", day_podium = day_podium)                   
+        games = statistic.get_roundstats(seasonround)
+        return render_template("dayscores.html", day_podium = day_podium, games = games)                   
     podium =statistic.season_stats()
     return render_template("scorestats.html", podium = podium)  
 
@@ -106,24 +113,29 @@ def americanostats():
             return render_template("americanostats.html",names = tournament_name, error = "Ei pelejä, valitse toinen turnaus")
     return render_template("americanostats.html", names = tournament_name)                   
 
-#tästä haetaan pelihistoria tilastoihin
+#tästä haetaan pelihistoria kausipeleistä kaikki missä round > 0, 0 on vakio käytetään Americanossa
 @app.route("/allgames", methods=["GET", "POST"])
 def allgames():
+    #haetaan kaikki kierrokset
+    rounds = statistic.get_rounds()
     if request.method == "POST":
         users.csrf()
-        date = request.form["gameday"]
-        if statistic.getgames(date):
-            games = statistic.getgames(date)
-            return render_template("gamestats.html", games = games)
+        round = request.form["round"]
+        if statistic.get_roundstats(round):
+            games = statistic.get_roundstats(round)
+            date = games[0][9].strftime("%d-%m-%y") 
+            day_podium = statistic.gameday_stats()
+            return render_template("gamestats.html", day_podium = day_podium, games = games, rounds = rounds, name = games[0][8], date = date)
         else:
-            last_gameday = statistic.prevgameday()
-            #games = statistic.getgames(last_gameday)
+            #last_gameday = statistic.prevgameday()
             return render_template("gamestats.html", message = "Ei pelejä kyseisenä päivänä")
     #tämä generoi alkuun edellisen pelipäivän pelit esille
     if statistic.prevgameday():
         last_gameday = statistic.prevgameday()
-        games = statistic.getgames(last_gameday)
-        return render_template("gamestats.html", games = games)
+        games = statistic.get_roundstats(last_gameday)
+        date = games[0][9].strftime("%d-%m-%y")
+        day_podium = statistic.gameday_stats()
+        return render_template("gamestats.html", day_podium = day_podium, games = games, rounds = rounds, name = games[0][8], date = date)
     else:
         return render_template("gamestats.html", message = "Ei vielä pelattuja pelejä")
 
