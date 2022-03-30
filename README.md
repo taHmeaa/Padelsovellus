@@ -26,6 +26,3 @@ Ohjelman tila:
 -Valmis arvosteltavaksi
 
 ****************************************************************************************
-Tuolta löytyy äppi:
-
-https://paistilanpadel.herokuapp.com/
