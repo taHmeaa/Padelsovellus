@@ -305,6 +305,17 @@ p {
 
 }
 
+.button {
+    padding: 4px;
+    border-radius: .5em;
+    text-align: center;
+    width: 8em;
+    background: rgb(255, 228, 197);
+    margin: 0.2em .5em .5em 0em;
+    color: black
+
+}
+
 form #scorebutton{
     margin: .5em;
     padding: .5em;

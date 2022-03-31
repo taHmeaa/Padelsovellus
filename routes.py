@@ -76,9 +76,9 @@ def playerdel():
                 del_player = request.form["del_player"]
                 playerconfig.delplayers(del_player)
                 return redirect("/playerapp")
-        else:
-            players = gamebracket.get_players()
-            return render_template("players.html", players =players, error = "Vain ADMIN voi poistaa pelaajan")
+            else:
+                players = gamebracket.get_players()
+                return render_template("players.html", players =players, error = "Vain ADMIN voi poistaa pelaajan")
 
 @app.route("/stats", methods=["GET", "POST"])
 def stats():
@@ -138,6 +138,31 @@ def allgames():
         return render_template("gamestats.html", day_podium = day_podium, games = games, rounds = rounds, name = games[0][8], date = date)
     else:
         return render_template("gamestats.html", message = "Ei vielä pelattuja pelejä")
+
+#haetaam peli pelihistoriasivun kautta muokkausta varten
+@app.route("/getgame", methods=["GET", "POST"])
+def getgame():
+    if request.method == "POST":
+        users.csrf()
+        if users.is_admin():
+            game = request.form["get_game"]
+            gameplayers = statistic.gameresult(game)
+            return render_template("modifygame.html", game = game, P = gameplayers)
+        else:
+            return redirect("/allgames")
+            
+#muokataan tuloksia
+@app.route("/modify", methods=["GET", "POST"])
+def modify():
+    if request.method == "POST":
+        users.csrf()
+        if users.is_admin():
+            r = request.form.getlist("gamescore")
+            game = request.form["get_game"]
+            statistic.modify(r[0], r[1], game)
+            return redirect("/allgames")
+        else:
+            return redirect("/allgames")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

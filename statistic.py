@@ -85,6 +85,7 @@ def gameday_stats():
     gameday_podium = result.fetchall()
     return gameday_podium
 
+#Tästä tulee talvikauden kausi tilastot
 def season_stats():
     sql = "SELECT player, scorewon, scoreloss, gamewon, gameloss FROM players ORDER BY gamewon DESC;"
     result = db.session.execute(sql)
@@ -143,8 +144,8 @@ def get_rounds():
 
 def get_roundstats(round):
     try:
-        sql = """SELECT p1, p1score, p2, p2score, p3, p3score, p4, p4score, seasonround, game_time FROM games 
-            WHERE seasonround=:round"""
+        sql = """SELECT p1, p1score, p2, p2score, p3, p3score, p4, p4score, seasonround, game_time, id FROM games 
+            WHERE seasonround=:round ORDER BY id ASC;"""
         result = db.session.execute(sql, {"round":round,})
         games = result.fetchall()
         #lisätään päivän tulokset daystats-tauluun ja nollataan taulu. Tähän joku fiksumpi ratkaisu...
@@ -163,14 +164,6 @@ def get_roundstats(round):
     except:
         return False
     return games
-    #try:
-    #    sql = """SELECT game_time, p1 , p2, p1score, p3, p4, p3score FROM games 
-    #            WHERE game_time::date=:gameday ORDER BY game_time DESC;"""
-    #    result = db.session.execute(sql, {"gameday":date,})
-    #    games = result.fetchall()
-    #except:
-    #    return False
-    #return games
 
 def prevgameday():
     try:
@@ -181,6 +174,23 @@ def prevgameday():
     except:
         return False
     return lastround
+
+#haetaan pelin tulokset ja pelaajat muokkausta varten
+def gameresult(id):
+    sql = """SELECT p1, p2, p3, p4 FROM games WHERE id=:id"""
+    result = db.session.execute(sql, {"id":id,})
+    game = result.fetchone()
+    return game
+
+#muokkaa pelatun pelin tuolokset    
+def modify(g1:int, g2:int, id:int):
+    sql ="""UPDATE games SET p1score = :p1, p2score = :p2, p3score = :p3, p4score = :p4 WHERE id = :id; """ 
+    db.session.execute(sql, {"p1":g1, "p2":g1, "p3":g2, "p4":g2, "id":id,})
+    db.session.commit()
+    return
+    
+    
+    
     #try:
     #    sql = "SELECT game_time FROM games ORDER BY game_time DESC;"
     #    prev = db.session.execute(sql)

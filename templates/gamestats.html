@@ -2,8 +2,8 @@
 {% block navcontent %}
 <div class="navbanner1">
     <a class ="navlinks1" href="/stats">Talvikausi</a>
-    <a class ="navlinks4" href="/americanostats">Americano</a>
     <a class ="navlinks2-select" href="/allgames">Pelihistoria</a>
+    <a class ="navlinks4" href="/americanostats">Americano</a>
 </div>
 {% endblock %}
 {% block statisticcontent %}
@@ -38,6 +38,11 @@
             <div class = "points"> {{ g[1] }}</div>
             <div class = "points"> {{ g[5] }}</div>
         </div>
+        <form class="playeradd" action="/getgame" method="POST">
+            <input type ="hidden" name="get_game" value="{{ g[10] }}">
+            <input id="button" type="submit" value="Muokkaa">
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">           
+        </form>
     {% endfor %} 
 {% endif %}
 {% endif %}

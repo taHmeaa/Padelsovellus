@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block title %}Pelit{% endblock %}
+{% block uppernav %}
+<div class="navbanner">
+    <a class ="navlinks1" href="/gameindex">Pelit</a>
+    <a class ="navlinks2" href="/stats">Tilastot</a>
+    <a class ="navlinks3" href="/playerapp">Pelaajat</a>
+    <a class ="navlinks4" href="/logout">Logout</a>
+</div>
+{% endblock %}
+{% block navstart %}
+<div class="navbanner">
+    <a class ="navlinks1" href="/gameindex">Pelit</a>
+    <a class ="navlinks2" href="/stats">Tilastot</a>
+    <a class ="navlinks3" href="/playerapp">Pelaajat</a>
+    <a class ="navlinks4" href="/login">Login</a>
+</div>
+{% endblock %}
+{% block content %}
+
+{% block navcontent %}{% endblock %}
+{% block indexcontent %}{% endblock %}
+
+<form action="/modify" method="POST">
+    <div class="scoreboard">  
+        <div class="team">{{ P[0] }} / {{ P[1] }}</div>
+        <div class="team">{{ P[2] }} / {{ P[3] }}</div>     
+        <div class="score">
+            <input type="hidden" id="hide" name="gamedata" value= "{{ P[0] }}">
+            <input type="hidden" id="hide" name="gamedata" value= "{{ P[1] }}">
+        <select id="scorewheel" name="gamescore">
+                    <option value="0" selected> 0
+                    <option value="1"> 1
+                    <option value="2"> 2
+                    <option value="3"> 3
+                    <option value="4"> 4
+                    <option value="5"> 5
+                    <option value="6"> 6
+                    <option value="7"> 7
+            </select>
+    </div>
+        <div class="score">
+            <input type="hidden" id="hide" name="gamedata" value= "{{ P[2] }}">
+            <input type="hidden" id="hide" name="gamedata" value= "{{ P[3] }}">
+        <select id="scorewheel" name="gamescore">
+                    <option value="0" selected> 0
+                    <option value="1"> 1
+                    <option value="2"> 2
+                    <option value="3"> 3
+                    <option value="4"> 4
+                    <option value="5"> 5
+                    <option value="6"> 6
+                    <option value="7"> 7
+            </select>
+        </div>
+    </div>    
+        <div class="playeradd">
+            <input id="button" type="submit" value="Tallenna">
+            <input type ="hidden" name="get_game" value="{{ game }}">
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+        </div>
+    </form>
+    <div class="playeradd">
+        <a class ="navlinks2" href="/allgames">Takaisin</a>
+    </div>
+    
+{% endblock %}
