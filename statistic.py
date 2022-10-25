@@ -34,9 +34,17 @@ def results(game_player:list,game_result:list, t_id:int, s_round:int):
         db.session.commit()        
     return 
 
+#def newseason():
+#    db.session.execute("""SELECT * INTO players22 FROM players;""")
+#    db.session.commit
+#    db.session.execute(""" UPDATE players22 SET scorewon = 0, scoreloss = 0, gamewon = 0, gameloss = 0;""")
+#    db.session.commit
+#    return
+
+
 def playerstats(players:list, points:list):
     #päivitetään pelaajan kausitilastot
-    sql = """ UPDATE players SET scorewon = scorewon + :w, scoreloss = scoreloss + :l 
+    sql = """ UPDATE players22 SET scorewon = scorewon + :w, scoreloss = scoreloss + :l 
                 WHERE player = :player """
     #kaaviossa vaseamman puolen joukkueen pisteet
     l = 0 
@@ -53,7 +61,7 @@ def playerstats(players:list, points:list):
         db.session.commit()
         r += 2
     #Pelivoitot / Pelihäviöt
-    sql2 = """ UPDATE players SET gamewon = gamewon + :gw, gameloss = gameloss +:gl
+    sql2 = """ UPDATE players22 SET gamewon = gamewon + :gw, gameloss = gameloss +:gl
             Where player = :player """
     l = 0
     for i in range(0, len(players), 4):
@@ -85,9 +93,10 @@ def gameday_stats():
     gameday_podium = result.fetchall()
     return gameday_podium
 
-#Tästä tulee talvikauden kausi tilastot
+#Tästä tulee talvikauden kausi tilastot, tähän pitää saada kausivalinta? players22 taulukko 2022-2023
+#Tähän voisi tehdä laskenna voitto% yms ja palauttaa tiedot -> html eikä laskea siellä.
 def season_stats():
-    sql = "SELECT player, scorewon, scoreloss, gamewon, gameloss FROM players ORDER BY gamewon DESC;"
+    sql = "SELECT player, scorewon, scoreloss, gamewon, gameloss FROM players22 ORDER BY gamewon DESC;"
     result = db.session.execute(sql)
     podium = result.fetchall()
     return podium

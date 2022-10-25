@@ -40,7 +40,7 @@
     {% endfor %}  
 {% endfor %}    
     <div class="scorebutton">
-        <input type="hidden" id="hide" name=tournament_id value= "1">
+        <input type="hidden" id="hide" name=tournament_id value= "1"> 
         <input type="hidden" id="hide" name=seasonround value= " {{ sr }} ">
         <input id="scorebutton" type="submit" value="Tallenna päivän tulokset">
         <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">

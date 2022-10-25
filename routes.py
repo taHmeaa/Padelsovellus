@@ -15,6 +15,13 @@ def gameindex():
     players = gamebracket.get_players()
     return render_template("indexseason.html", players = players)
 
+#@app.route("/newseason")
+#def newseason():
+#    if request.method == "POST":
+#        users.csrf()
+#        add_season = request.form["add_season"]
+
+
 @app.route("/games", methods=["GET", "POST"])
 def games():
     if request.method == "POST":
@@ -97,7 +104,7 @@ def stats():
         games = statistic.get_roundstats(seasonround)
         return render_template("dayscores.html", day_podium = day_podium, games = games)                   
     podium =statistic.season_stats()
-    return render_template("scorestats.html", podium = podium)  
+    return render_template("scorestats.html", podium = podium)
 
 @app.route("/americanostats", methods=["GET", "POST"])
 def americanostats():
